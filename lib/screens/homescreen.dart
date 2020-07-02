@@ -17,10 +17,10 @@ class _HomeScreen extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: AppColors.primaryColor,
+        backgroundColor: primaryColor,
         appBar: AppBar(
           elevation: 0,
-          backgroundColor: AppColors.primaryColor,
+          backgroundColor: primaryColor,
           actions: <Widget>[
             IconButton(icon: Icon(Icons.save), onPressed: null)
           ],

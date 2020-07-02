@@ -29,7 +29,7 @@ class _CardoneState extends State<Cardone> {
     return Padding(
       padding: const EdgeInsets.fromLTRB(4, 4, 4, 4),
       child: Card(
-        color: AppColors.secondaryColor,
+        color: primaryColor,
         child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             mainAxisSize: MainAxisSize.min,

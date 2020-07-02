@@ -1,4 +1,3 @@
-import 'package:PsyTrack/sharedwidgets/card1.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -9,14 +8,10 @@ class StatsScreen extends StatefulWidget {
   _statsScreen createState() => _statsScreen();
 }
 
+// ignore: camel_case_types
 class _statsScreen extends State<StatsScreen> {
-  bool _active = false;
-
-  void _handleTap() {
-    setState(() {
-      _active = !_active;
-    });
-  }
+ 
+  
 
   Widget build(BuildContext context) {
     return Scaffold(

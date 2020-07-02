@@ -13,7 +13,8 @@ Widget build(BuildContext context){
 return Padding(
     padding: const EdgeInsets.fromLTRB(4, 8, 4, 4),
     child: Card(
-      color: AppColors.secondaryColor,
+      elevation: 0,
+      color: primaryColor,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,

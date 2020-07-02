@@ -28,55 +28,29 @@ class _SecondCardState extends State<SecondCard> {
     return Padding(
       padding: const EdgeInsets.fromLTRB(4, 4, 4, 4),
       child: Card(
-        color: AppColors.secondaryColor,
+              elevation: 0,
+
+        color: primaryColor,
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.center,
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
-            SizedBox(
-              child: Text(
-                'Day-Moods',
-                style: TextStyle(
-                  fontSize: 24,
-                  color: Colors.yellow,
-                ),
-              ),
-            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
-              mainAxisSize: MainAxisSize.max,
               children: <Widget>[
-                new Image(
-                  image: new AssetImage("assets/images/saad.png"),
-                  width: 30,
-                  height: 30,
-                  color: null,
-                  fit: BoxFit.scaleDown,
-                  alignment: Alignment.center,
+                Text(
+                  'Day-Moods',
+                  style: TextStyle(
+                    fontSize: 24,
+                    color: Colors.yellow,
+                  ),
                 ),
-                new Image(
-                  image: new AssetImage("assets/images/saad.png"),
-                  width: 30,
-                  height: 30,
-                  color: null,
-                  fit: BoxFit.scaleDown,
-                  alignment: Alignment.center,
-                ),
-                new Image(
-                  image: new AssetImage("assets/images/saad.png"),
-                  width: 30,
-                  height: 30,
-                  color: null,
-                  fit: BoxFit.scaleDown,
-                  alignment: Alignment.center,
-                ),
-                new Image(
-                  image: new AssetImage("assets/images/saad.png"),
-                  width: 30,
-                  height: 30,
-                  color: null,
-                  fit: BoxFit.scaleDown,
-                  alignment: Alignment.center,
+                Expanded(
+                  child: Container(
+                    alignment: Alignment.centerRight,
+                    margin: EdgeInsets.only(left: 4),
+                    child: emojis(),
+                  ),
                 ),
               ],
             ),
@@ -109,11 +83,10 @@ class _SecondCardState extends State<SecondCard> {
                         color: Colors.yellow[50],
                       ),
                     ),
-                     RadioGrp(),
+                    RadioGrp(),
                   ],
                 ),
               ),
-              
             ),
             Padding(
               padding: const EdgeInsets.only(left: 8.0),
@@ -127,7 +100,7 @@ class _SecondCardState extends State<SecondCard> {
                         color: Colors.yellow[50],
                       ),
                     ),
-                     RadioGrp(),
+                    RadioGrp(),
                   ],
                 ),
               ),
@@ -144,7 +117,7 @@ class _SecondCardState extends State<SecondCard> {
                         color: Colors.yellow[50],
                       ),
                     ),
-                     RadioGrp(),
+                    RadioGrp(),
                   ],
                 ),
               ),
@@ -154,4 +127,55 @@ class _SecondCardState extends State<SecondCard> {
       ),
     );
   }
+}
+
+Widget emojis() {
+  return Padding(
+    padding: const EdgeInsets.only(left:4.0,right: 4),
+    child: Row(
+      mainAxisAlignment: MainAxisAlignment.end,
+      children: <Widget>[
+        new Image(
+        image: new AssetImage(moods[2]['iconPath']),
+        width: 30,
+        height: 30,
+        color: null,
+        fit: BoxFit.scaleDown,
+        alignment: Alignment.center,
+          ),
+          new Image(
+        image: new AssetImage(moods[2]['iconPath']),
+        width: 30,
+        height: 30,
+        color: null,
+        fit: BoxFit.scaleDown,
+        alignment: Alignment.center,
+          ),
+          new Image(
+        image: new AssetImage(moods[2]['iconPath']),
+        width: 30,
+        height: 30,
+        color: null,
+        fit: BoxFit.scaleDown,
+        alignment: Alignment.center,
+          ),
+          new Image(
+        image: new AssetImage(moods[2]['iconPath']),
+        width: 30,
+        height: 30,
+        color: null,
+        fit: BoxFit.scaleDown,
+        alignment: Alignment.center,
+          ),
+          new Image(
+        image: new AssetImage(moods[2]['iconPath']),
+        width: 30,
+        height: 30,
+        color: null,
+        fit: BoxFit.scaleDown,
+        alignment: Alignment.center,
+          ),
+      ],
+    ),
+  );
 }
