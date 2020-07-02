@@ -1,6 +1,7 @@
 import 'package:PsyTrack/mainstuff/settings.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:PsyTrack/mainstuff/settings.dart';
 
 var count59 = 0;
 
@@ -10,7 +11,6 @@ class Cardone extends StatefulWidget {
 }
 
 class _CardoneState extends State<Cardone> {
-
   void increment() {
     setState(() {
       count59++;
@@ -19,8 +19,7 @@ class _CardoneState extends State<Cardone> {
 
   void decerement() {
     setState(() {
-      if(count59>0)
-      count59--;
+      if (count59 > 0) count59--;
     });
   }
 
@@ -34,13 +33,18 @@ class _CardoneState extends State<Cardone> {
             mainAxisAlignment: MainAxisAlignment.start,
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
-              SizedBox(
-                child: Text(
-                  'Clock-Signs',
-                  style: TextStyle(
-                    fontSize: 24,
-                    color: Colors.yellow,
-                  ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  children: <Widget>[
+                    Text(
+                      'Clock-Signs',
+                      style: TextStyle(
+                        fontSize: 24,
+                        color: Colors.yellow,
+                      ),
+                    ),
+                  ],
                 ),
               ),
               Padding(
@@ -57,7 +61,7 @@ class _CardoneState extends State<Cardone> {
                             fontFamily: 'Roboto',
                             fontSize: 26,
                             fontWeight: FontWeight.w500,
-                            color: Colors.black87,
+                            color: Colors.white70,
                           ),
                         ),
                       ),

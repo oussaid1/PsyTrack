@@ -1,1 +1,4 @@
-#Thu Jul 02 01:12:21 WEST 2020
+#Thu Jul 02 18:05:18 WEST 2020
+base.0=C\:\\Users\\oussa\\PsyTrack\\build\\app\\intermediates\\dex\\debug\\mergeDexDebug\\out\\classes.dex
+path.0=classes.dex
+renamed.0=classes.dex

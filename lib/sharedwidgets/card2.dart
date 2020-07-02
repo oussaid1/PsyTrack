@@ -28,100 +28,73 @@ class _SecondCardState extends State<SecondCard> {
     return Padding(
       padding: const EdgeInsets.fromLTRB(4, 4, 4, 4),
       child: Card(
-              elevation: 0,
-
+        elevation: 0,
         color: primaryColor,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: <Widget>[
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Row(children: <Widget>[
                 Text(
-                  'Day-Moods',
+                  'Clock-Signs',
                   style: TextStyle(
                     fontSize: 24,
                     color: Colors.yellow,
                   ),
                 ),
-                Expanded(
-                  child: Container(
-                    alignment: Alignment.centerRight,
-                    margin: EdgeInsets.only(left: 4),
-                    child: emojis(),
+              ]),
+            ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisSize: MainAxisSize.max,
+              children: <Widget>[
+              
+              Row(
+                children: <Widget>[
+                  Text(
+                    'Morning-Mood',
+                    style: SubTextStyle,
                   ),
-                ),
-              ],
-            ),
-            Padding(
-              padding: const EdgeInsets.fromLTRB(4, 4, 0, 0),
-              child: Center(
+                  RadioGrp(),
+                ],
+              ),
+              Center(
                 child: Row(
                   children: <Widget>[
                     Text(
                       'Morning-Mood',
-                      style: TextStyle(
-                        fontSize: 20,
-                        color: Colors.yellow[50],
-                      ),
+                      style: SubTextStyle,
                     ),
                     RadioGrp(),
                   ],
                 ),
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.fromLTRB(4, 4, 0, 0),
-              child: Center(
-                child: Row(
-                  children: <Widget>[
-                    Text(
-                      'Morning-Mood',
-                      style: TextStyle(
-                        fontSize: 20,
-                        color: Colors.yellow[50],
-                      ),
-                    ),
-                    RadioGrp(),
-                  ],
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 8.0),
-              child: Center(
+              Center(
                 child: Row(
                   children: <Widget>[
                     Text(
                       'Afternoon-Mood',
-                      style: TextStyle(
-                        fontSize: 20,
-                        color: Colors.yellow[50],
-                      ),
+                      style: SubTextStyle,
                     ),
                     RadioGrp(),
                   ],
                 ),
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 8.0),
-              child: Center(
+              Center(
                 child: Row(
                   children: <Widget>[
                     Text(
                       'Evening-Mood',
-                      style: TextStyle(
-                        fontSize: 20,
-                        color: Colors.yellow[50],
-                      ),
+                      style: SubTextStyle,
                     ),
                     RadioGrp(),
                   ],
                 ),
               ),
-            ),
+            ])
           ],
         ),
       ),
@@ -131,50 +104,18 @@ class _SecondCardState extends State<SecondCard> {
 
 Widget emojis() {
   return Padding(
-    padding: const EdgeInsets.only(left:4.0,right: 4),
+    padding: const EdgeInsets.only(left: 4.0, right: 4),
     child: Row(
       mainAxisAlignment: MainAxisAlignment.end,
       children: <Widget>[
         new Image(
-        image: new AssetImage(moods[2]['iconPath']),
-        width: 30,
-        height: 30,
-        color: null,
-        fit: BoxFit.scaleDown,
-        alignment: Alignment.center,
-          ),
-          new Image(
-        image: new AssetImage(moods[2]['iconPath']),
-        width: 30,
-        height: 30,
-        color: null,
-        fit: BoxFit.scaleDown,
-        alignment: Alignment.center,
-          ),
-          new Image(
-        image: new AssetImage(moods[2]['iconPath']),
-        width: 30,
-        height: 30,
-        color: null,
-        fit: BoxFit.scaleDown,
-        alignment: Alignment.center,
-          ),
-          new Image(
-        image: new AssetImage(moods[2]['iconPath']),
-        width: 30,
-        height: 30,
-        color: null,
-        fit: BoxFit.scaleDown,
-        alignment: Alignment.center,
-          ),
-          new Image(
-        image: new AssetImage(moods[2]['iconPath']),
-        width: 30,
-        height: 30,
-        color: null,
-        fit: BoxFit.scaleDown,
-        alignment: Alignment.center,
-          ),
+          image: new AssetImage(moods[2]['iconPath']),
+          width: 30,
+          height: 30,
+          color: null,
+          fit: BoxFit.scaleDown,
+          alignment: Alignment.center,
+        ),
       ],
     ),
   );

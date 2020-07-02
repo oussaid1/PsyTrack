@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:PsyTrack/mainstuff/settings.dart';
 
 var count59 = 0;
 
@@ -9,62 +10,58 @@ class RadioGrp extends StatefulWidget {
 }
 
 class _RadioGrpState extends State<RadioGrp> {
+  int selectedemoji=0;
+  incrementMood() {
+    setState(() {
+      if(selectedemoji<4){
+        selectedemoji++;
+      }
+      
+    });
+  }
 
-   int selectedRadio;
- setSelectedRadio(val){
-   
-   setState(() {
-     selectedRadio=val;
-   });
- }
+  decrement() {
+    setState(() {
+      if(selectedemoji>0)
+      selectedemoji--;
+    });
+  }
+
   @override
   void initState() {
-    selectedRadio = 1;
+    selectedemoji = 0;
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     return Expanded(
-                      
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        mainAxisSize: MainAxisSize.min,
-                        children: <Widget>[
-                          Radio(
-                            onChanged: (value) {setSelectedRadio(value);},
-                            activeColor: Colors.pink,
-                            groupValue: selectedRadio,
-                            value: 1,
-                          ),
-                          Radio(
-                            onChanged: (value) {setSelectedRadio(value);},
-                            activeColor: Colors.pink,
-                            groupValue: selectedRadio,
-                            value: 2,
-                          ),
-                         Radio(
-                            onChanged: (value) {setSelectedRadio(value);},
-                            activeColor: Colors.pink,
-                            groupValue: selectedRadio,
-                            value: 3,
-                          ),
-                          Radio(
-                            onChanged: (value) {setSelectedRadio(value);},
-                            activeColor: Colors.pink,
-                            groupValue: selectedRadio,
-                            value: 4,
-                          ),
-                          Radio(
-                            
-                            onChanged: (value) {setSelectedRadio(value);},
-                            activeColor: Colors.pink,
-                            groupValue: selectedRadio,
-                            value: 5,
-                          ),
-                        ],
-                      ),
-                    );
+      flex: 2,
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.end,
+        mainAxisSize: MainAxisSize.max,
+        children: <Widget>[
+          new Image(
+              image: new AssetImage(moods[selectedemoji]['iconPath']),
+              width: 30,
+              height: 30,
+              color: null,
+              fit: BoxFit.scaleDown,
+              alignment: Alignment.center,
+            ),
+            IconButton(icon: Icon(Icons.thumb_down,), onPressed:(){ decrement();},),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(8,4,2,4),
+            child: Text('$selectedemoji',
+            textAlign: TextAlign.center,
+            style:MainTextStyle ,
+                
+              ),
+          ),
+          IconButton(icon: Icon(Icons.thumb_up,), onPressed:(){ incrementMood();}),
+        ],
+      ),
+    );
   }
 }
