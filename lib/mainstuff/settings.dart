@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 
 Color primaryColor = Colors.teal[900];
 Color secondaryColor = Color(0xAA62A3C2);
-Color mainTextColor = Color(0xAAF2C95D);
+Color mainTextColor = Colors.white;
 Color secondaryTextColor = Color(0xAAE0E0E0);
 const MainTextStyle = TextStyle(
-  fontSize: 18,
+  fontSize: 24,
   color: Colors.yellow,
-  fontWeight: FontWeight.w100,
+  fontWeight: FontWeight.w300,
 );
 const SubTextStyle = TextStyle(
   fontSize: 16,

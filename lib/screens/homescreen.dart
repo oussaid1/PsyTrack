@@ -22,7 +22,7 @@ class _HomeScreen extends State<HomeScreen> {
           elevation: 0,
           backgroundColor: primaryColor,
           actions: <Widget>[
-            IconButton(icon: Icon(Icons.save), onPressed: null)
+            IconButton(icon: Icon(Icons.check	,color: Colors.white70,), onPressed: null)
           ],
         ),
         body: Column(

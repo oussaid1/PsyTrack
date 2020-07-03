@@ -25,10 +25,7 @@ class _ThirdCardState extends State<ThirdCard> {
                 children: <Widget>[
                   Text(
                     'Psy-State',
-                    style: TextStyle(
-                      fontSize: 24,
-                      color: Colors.yellow,
-                    ),
+                    style: MainTextStyle,
                   ),
                 ],
               ),

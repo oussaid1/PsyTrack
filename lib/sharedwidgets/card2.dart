@@ -38,11 +38,8 @@ class _SecondCardState extends State<SecondCard> {
               padding: const EdgeInsets.all(8.0),
               child: Row(children: <Widget>[
                 Text(
-                  'Clock-Signs',
-                  style: TextStyle(
-                    fontSize: 24,
-                    color: Colors.yellow,
-                  ),
+                  'Mood-State',
+                  style: MainTextStyle
                 ),
               ]),
             ),
@@ -54,9 +51,12 @@ class _SecondCardState extends State<SecondCard> {
               
               Row(
                 children: <Widget>[
-                  Text(
-                    'Morning-Mood',
-                    style: SubTextStyle,
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                      'Morning-Mood',
+                      style: SubTextStyle,
+                    ),
                   ),
                   RadioGrp(),
                 ],
@@ -64,9 +64,12 @@ class _SecondCardState extends State<SecondCard> {
               Center(
                 child: Row(
                   children: <Widget>[
-                    Text(
-                      'Morning-Mood',
-                      style: SubTextStyle,
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        'Morning-Mood',
+                        style: SubTextStyle,
+                      ),
                     ),
                     RadioGrp(),
                   ],
@@ -75,9 +78,12 @@ class _SecondCardState extends State<SecondCard> {
               Center(
                 child: Row(
                   children: <Widget>[
-                    Text(
-                      'Afternoon-Mood',
-                      style: SubTextStyle,
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        'Afternoon-Mood',
+                        style: SubTextStyle,
+                      ),
                     ),
                     RadioGrp(),
                   ],
@@ -86,9 +92,12 @@ class _SecondCardState extends State<SecondCard> {
               Center(
                 child: Row(
                   children: <Widget>[
-                    Text(
-                      'Evening-Mood',
-                      style: SubTextStyle,
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        'Evening-Mood',
+                        style: SubTextStyle,
+                      ),
                     ),
                     RadioGrp(),
                   ],

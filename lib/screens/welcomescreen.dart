@@ -1,21 +1,26 @@
+import 'package:PsyTrack/mainstuff/settings.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class WelcomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
+    return Scaffold(
+      backgroundColor: primaryColor,
         body: Stack(
+          
       children: <Widget>[
         Container(
-          child: SizedBox.expand(
-            child: Image.asset(
-              'assets/images/welcomescr.png',
-              fit: BoxFit.fill,
-            ),
+          
+          margin: EdgeInsets.fromLTRB(2, 40, 2, 2),
+          alignment: Alignment.topCenter,
+          child: Image.asset(
+            'assets/images/logo.png',
+            fit: BoxFit.fitWidth,
+            width: 300,
+            height: 300,
           ),
         ),
-        
         Center(
           child: Padding(
             padding: const EdgeInsets.only(
@@ -34,8 +39,14 @@ class WelcomeScreen extends StatelessWidget {
                 },
               ),
             ),
+            
           ),
         ),
+        Container(
+          alignment: Alignment.bottomCenter,
+          child:
+        Text('Dev-Bourheem \n Copyright\n 2020', textAlign :TextAlign.center)
+        )
       ],
     ));
   }

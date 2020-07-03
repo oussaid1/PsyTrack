@@ -39,10 +39,7 @@ class _CardoneState extends State<Cardone> {
                   children: <Widget>[
                     Text(
                       'Clock-Signs',
-                      style: TextStyle(
-                        fontSize: 24,
-                        color: Colors.yellow,
-                      ),
+                      style: MainTextStyle,
                     ),
                   ],
                 ),
@@ -52,37 +49,34 @@ class _CardoneState extends State<Cardone> {
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
-                    Expanded(
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Text(
-                          '00:59',
-                          style: TextStyle(
-                            fontFamily: 'Roboto',
-                            fontSize: 26,
-                            fontWeight: FontWeight.w500,
-                            color: Colors.white70,
-                          ),
-                        ),
-                      ),
-                    ),
-                    Expanded(
-                      flex: 2,
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
                       child: Text(
-                        '$count59',
-                        textAlign: TextAlign.center,
+                        '00:59',
                         style: TextStyle(
-                          fontSize: 24,
-                          color: Colors.black87,
+                          fontFamily: 'Roboto',
+                          fontSize: 22,
+                          fontWeight: FontWeight.w300,
+                          color: Colors.white70,
                         ),
                       ),
                     ),
                     Expanded(
-                        child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: <Widget>[
-                          Expanded(
-                            child: IconButton(
+                      child: Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          mainAxisSize: MainAxisSize.min,
+                          children: <Widget>[
+                            IconButton(
+                              iconSize: 40,
+                              icon: Icon(Icons.arrow_drop_down),
+                              onPressed: () => decerement(),
+                            ),
+                            Text(
+                              '$count59',
+                              textAlign: TextAlign.center,
+                              style: MainTextStyle,
+                            ),
+                            IconButton(
                                 icon: Icon(
                                   Icons.arrow_drop_up,
                                 ),
@@ -90,15 +84,8 @@ class _CardoneState extends State<Cardone> {
                                 onPressed: () {
                                   increment();
                                 }),
-                          ),
-                          Expanded(
-                            child: IconButton(
-                              iconSize: 40,
-                              icon: Icon(Icons.arrow_drop_down),
-                              onPressed: () => decerement(),
-                            ),
-                          ),
-                        ]))
+                          ]),
+                    ),
                   ],
                 ),
               )
