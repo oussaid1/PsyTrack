@@ -16,8 +16,8 @@ class DatabaseProvider {
   static const String COLUMN_obsessionLevel = "obsessionLevel";
   static const String COLUMN_sleepLevel = "sleepLevel";
   static const String COLUMN_overAllRate = "overAllRate";
- static const String COLUMN_date = "date";
-
+  static const String COLUMN_date = "date";
+  DatabaseProvider();
   DatabaseProvider._();
   static final DatabaseProvider db = DatabaseProvider._();
 
@@ -46,7 +46,7 @@ class DatabaseProvider {
 
         await database.execute(
           "CREATE TABLE $TABLE_Day("
-          "$COLUMN_ID INTEGER PRIMARY KEY,"
+          "$COLUMN_ID INTEGER PRIMARY KEY autoincrement,"
           "$COLUMN_count59  INTEGER,"
           "$COLUMN_morningMood INTEGER,"
           "$COLUMN_afternoonMood INTEGER,"
@@ -57,9 +57,7 @@ class DatabaseProvider {
           "$COLUMN_obsessionLevel INTEGER,"
           "$COLUMN_sleepLevel INTEGER,"
           "$COLUMN_overAllRate INTEGER,"
-          "$COLUMN_date DATE,"
-         
-          ")",
+          "$COLUMN_date TEXT)",
         );
       },
     );
@@ -68,16 +66,26 @@ class DatabaseProvider {
   Future<List<Day>> getDays() async {
     final db = await database;
 
-    var days = await db.query( TABLE_Day,
-        columns: [COLUMN_ID, COLUMN_count59, COLUMN_morningMood, COLUMN_afternoonMood , COLUMN_eveningMood , COLUMN_nightMood 
-        ,COLUMN_stressLevel  , COLUMN_anxietyLevel , COLUMN_obsessionLevel , COLUMN_obsessionLevel 
-        , COLUMN_sleepLevel , COLUMN_overAllRate ,COLUMN_date  ]);
+    var days = await db.query(TABLE_Day, columns: [
+      COLUMN_ID,
+      COLUMN_count59,
+      COLUMN_morningMood,
+      COLUMN_afternoonMood,
+      COLUMN_eveningMood,
+      COLUMN_nightMood,
+      COLUMN_stressLevel,
+      COLUMN_anxietyLevel,
+      COLUMN_obsessionLevel,
+      COLUMN_sleepLevel,
+      COLUMN_overAllRate,
+      COLUMN_date
+    ]);
 
-    List<Day> dayList = List<Day>();
+  List<Day> dayList = List<Day>();
 
     days.forEach((currentday) {
-      Day day = Day.fromMap(currentday);
-
+    Day day = Day.fromMap(currentday);
+     
       dayList.add(day);
     });
 

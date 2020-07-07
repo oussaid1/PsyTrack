@@ -2,6 +2,11 @@ import 'package:PsyTrack/mainstuff/settings.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+   int stressL=0;
+   int anxL=0;
+   int obssL=0;
+   int sleeoL=0;
+   int drsteOV=0;
 class ThirdCard extends StatefulWidget {
   @override
   _ThirdCardState createState() => _ThirdCardState();
