@@ -50,7 +50,7 @@ class _statsScreen extends State<StatsScreen> {
                           itemCount: studlist == null ?0 : studlist.length,
                           itemBuilder: (BuildContext context, int index) {
                             day = studlist[index];
-                           return Text('Name: ${day.morningMood.toString()}',);
+                           return Text('Name: ${day.dayOVScore}',);
                               
                           },
 

@@ -5,9 +5,12 @@ import 'package:PsyTrack/providernotif/provider.dart';
 import 'package:PsyTrack/sharedwidgets/card1.dart';
 import 'package:PsyTrack/sharedwidgets/card2.dart';
 import 'package:PsyTrack/sharedwidgets/card3.dart';
+import 'package:PsyTrack/sharedwidgets/daycard.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
+import 'package:provider/provider.dart';
+double psyStateScore=2;
+double score=0;
 class HomeScreen extends StatefulWidget {
   @override
   _HomeScreen createState() => _HomeScreen();
@@ -15,26 +18,23 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreen extends State<HomeScreen> {
 
-   Day day;
-   
-   
+   final dayprovider = DayProvider();
+ // final count59 = dayprovider.count;
+  Day day;
 
   final DatabaseProvider databaseProvider = new DatabaseProvider();
-   DayProvider dayProvider = new DayProvider();
+  DayProvider dayProvider = new DayProvider();
+
   
-  addDayToDb() {
-    
-     day = new Day(6,6,6,6,6,6,6,6,6,6,'fff');
-     day.toMap();
-     List<Day> list= new List<Day>();
-    
-     DatabaseProvider.db.insert(day);
-    print(evM.toString());
-    //dayProvider.addDay(day);
-  }
 
   @override
   Widget build(BuildContext context) {
+    
+    void savTodb(){
+      final dpv2= Provider.of<DayProvider>(context);
+      dpv2.moM;
+      DayProvider() n = new DayProvider();
+    }
     return Scaffold(
         backgroundColor: primaryColor,
         appBar: AppBar(
@@ -54,14 +54,15 @@ class _HomeScreen extends State<HomeScreen> {
                 color: Colors.white70,
               ),
               onPressed: () {
-                addDayToDb();
-                
+               
               },
             )
           ],
         ),
         body: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
+            DayCard(),
             Cardone(),
             SecondCard(),
             ThirdCard(),

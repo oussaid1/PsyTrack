@@ -2,6 +2,7 @@ import 'package:PsyTrack/classobjects/day_model.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:sqflite/sqlite_api.dart';
+import 'dart:async';
 
 class DatabaseProvider {
   static const String TABLE_Day = "Day";
@@ -39,7 +40,7 @@ class DatabaseProvider {
     String dbPath = await getDatabasesPath();
 
     return await openDatabase(
-      join(dbPath, 'dayDB.db'),
+      join(dbPath, 'PsyTrackDB.db'),
       version: 1,
       onCreate: (Database database, int version) async {
         print("Creating day table");
@@ -47,16 +48,16 @@ class DatabaseProvider {
         await database.execute(
           "CREATE TABLE $TABLE_Day("
           "$COLUMN_ID INTEGER PRIMARY KEY autoincrement,"
-          "$COLUMN_count59  INTEGER,"
+          "$COLUMN_count59  INTEGER," 
           "$COLUMN_morningMood INTEGER,"
           "$COLUMN_afternoonMood INTEGER,"
           "$COLUMN_eveningMood INTEGER,"
           "$COLUMN_nightMood INTEGER,"
-          "$COLUMN_stressLevel INTEGER,"
-          "$COLUMN_anxietyLevel INTEGER,"
-          "$COLUMN_obsessionLevel INTEGER,"
-          "$COLUMN_sleepLevel INTEGER,"
-          "$COLUMN_overAllRate INTEGER,"
+          "$COLUMN_stressLevel DOUBLE,"
+          "$COLUMN_anxietyLevel DOUBLE,"
+          "$COLUMN_obsessionLevel DOUBLE,"
+          "$COLUMN_sleepLevel DOUBLE,"
+          "$COLUMN_overAllRate DOUBLE,"
           "$COLUMN_date TEXT)",
         );
       },
@@ -78,7 +79,7 @@ class DatabaseProvider {
       COLUMN_obsessionLevel,
       COLUMN_sleepLevel,
       COLUMN_overAllRate,
-      COLUMN_date
+      COLUMN_date,
     ]);
 
   List<Day> dayList = List<Day>();
@@ -94,7 +95,8 @@ class DatabaseProvider {
 
   Future<Day> insert(Day day) async {
     final db = await database;
-    day.id = await db.insert(TABLE_Day, day.toMap());
+   //Day day = new Day(1,1,1,1,1,2,2,2,2,2,'499999');
+    await db.insert(TABLE_Day, day.toMap());
     return day;
   }
 
@@ -118,4 +120,5 @@ class DatabaseProvider {
       whereArgs: [day.id],
     );
   }
+  
 }

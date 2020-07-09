@@ -8,9 +8,13 @@ import 'package:english_words/english_words.dart';
 import 'package:provider/provider.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(
+    ChangeNotifierProvider(
+      create: (context) => DayProvider(),
+      child: MyApp(),
+    ),
+  );
 }
-
 final wordPair = WordPair.random();
 
 class MyApp extends StatelessWidget {

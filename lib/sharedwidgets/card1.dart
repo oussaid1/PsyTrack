@@ -1,9 +1,11 @@
+import 'dart:developer';
+
 import 'package:PsyTrack/mainstuff/settings.dart';
+import 'package:PsyTrack/providernotif/provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:PsyTrack/mainstuff/settings.dart';
-
-var count59 = 0;
+import 'package:provider/provider.dart';
 
 class Cardone extends StatefulWidget {
   @override
@@ -11,53 +13,44 @@ class Cardone extends StatefulWidget {
 }
 
 class _CardoneState extends State<Cardone> {
-  void increment() {
-    setState(() {
-      count59++;
-    });
-  }
-
-  void decerement() {
-    setState(() {
-      if (count59 > 0) count59--;
-    });
-  }
-
+  
   @override
   Widget build(BuildContext context) {
+    var dpv = Provider.of<DayProvider>(context);
     return Padding(
-      padding: const EdgeInsets.fromLTRB(4, 4, 4, 4),
+      padding: const EdgeInsets.fromLTRB(4, 0, 4, 2),
       child: Card(
+        elevation: 2,
         color: primaryColor,
         child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
               Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: const EdgeInsets.all(2.0),
                 child: Row(
                   children: <Widget>[
                     Text(
                       'Clock-Signs',
-                      style: MainTextStyle,
+                      style: maintext,
                     ),
                   ],
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(top: 4),
+                padding: const EdgeInsets.only(top: 2),
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
                     Padding(
-                      padding: const EdgeInsets.all(8.0),
+                      padding: const EdgeInsets.all(4.0),
                       child: Text(
                         '00:59',
                         style: TextStyle(
                           fontFamily: 'Roboto',
                           fontSize: 22,
-                          fontWeight: FontWeight.w300,
-                          color: Colors.white70,
+                          fontWeight: FontWeight.w200,
+                          color: Colors.yellow[100],
                         ),
                       ),
                     ),
@@ -69,20 +62,24 @@ class _CardoneState extends State<Cardone> {
                             IconButton(
                               iconSize: 40,
                               icon: Icon(Icons.arrow_drop_down),
-                              onPressed: () => decerement(),
+                              onPressed: () =>
+                                 dpv.increment(),
                             ),
-                            Text(
-                              '$count59',
+                            Consumer<DayProvider>(
+                              builder: (context, dpv, child) {
+                                return Text(dpv.count.toString(),
                               textAlign: TextAlign.center,
-                              style: MainTextStyle,
+                              style: subtext,);
+                              },
                             ),
+                            
                             IconButton(
                                 icon: Icon(
                                   Icons.arrow_drop_up,
                                 ),
                                 iconSize: 40,
                                 onPressed: () {
-                                  increment();
+                                  dpv.increment();
                                 }),
                           ]),
                     ),

@@ -1,4 +1,5 @@
 import 'package:PsyTrack/database/sqlitemodel.dart';
+import 'package:PsyTrack/providernotif/provider.dart';
 
 class Day {
   int id;
@@ -7,11 +8,11 @@ class Day {
   int afternoonMood;
   int eveningMood;
   int nightMood;
-  int stressLevel;
-  int anxietyLevel;
-  int obsessionLevel;
-  int sleepLevel;
-  int overAllRate;
+  double stressLevel;
+  double anxietyLevel;
+  double obsessionLevel;
+  double sleepLevel;
+  double dayOVScore;
   String date;
 
   Day(
@@ -24,7 +25,7 @@ class Day {
       this.anxietyLevel,
       this.obsessionLevel,
       this.sleepLevel,
-      this.overAllRate,
+      this.dayOVScore,
       this.date);
 
   Map<String, dynamic> toMap() {
@@ -39,7 +40,7 @@ class Day {
       DatabaseProvider.COLUMN_anxietyLevel: anxietyLevel,
       DatabaseProvider.COLUMN_obsessionLevel: obsessionLevel,
       DatabaseProvider.COLUMN_sleepLevel: sleepLevel,
-      DatabaseProvider.COLUMN_overAllRate: overAllRate,
+      DatabaseProvider.COLUMN_overAllRate: dayOVScore,
       DatabaseProvider.COLUMN_date: date,
     };
 
@@ -47,7 +48,7 @@ class Day {
   }
 
   Day.fromMap(Map<String, dynamic> map) {
-     id = map[DatabaseProvider.COLUMN_ID];
+    // id = map[DatabaseProvider.COLUMN_ID];
     count59 = map[DatabaseProvider.COLUMN_count59];
     morningMood = map[DatabaseProvider.COLUMN_morningMood];
     afternoonMood = map[DatabaseProvider.COLUMN_afternoonMood];
@@ -57,7 +58,58 @@ class Day {
     anxietyLevel = map[DatabaseProvider.COLUMN_anxietyLevel];
     obsessionLevel = map[DatabaseProvider.COLUMN_obsessionLevel];
     sleepLevel = map[DatabaseProvider.COLUMN_sleepLevel];
-    overAllRate = map[DatabaseProvider.COLUMN_overAllRate];
+    dayOVScore = map[DatabaseProvider.COLUMN_overAllRate];
     date = map[DatabaseProvider.COLUMN_date];
+  }
+
+  Day.fromProvider(DayProvider dayProvider) {
+    count59 = dayProvider.count;
+    morningMood = dayProvider.moM;
+    afternoonMood = dayProvider.afM;
+    eveningMood = dayProvider.evM;
+    nightMood = dayProvider.nightM;
+    stressLevel = dayProvider.stressLevel;
+    anxietyLevel = dayProvider.anxietyLevel;
+    obsessionLevel = dayProvider.obsessionLevel;
+    sleepLevel = dayProvider.sleepLevel;
+    dayOVScore = dayProvider.dayOVScore;
+    date = dayProvider.date;
+  }
+
+  double toScore(double d) {
+    if (d < 1) {
+      return 5;
+    } else if (d < 2 && d >= 1) {
+      return 4;
+    }
+    if (d < 3 && d >= 2) {
+      return 3;
+    }
+    if (d < 4 && d >= 3) {
+      return 2;
+    }
+    if (d < 5 && d >= 4) {
+      return 1;
+    }
+    if (d >= 5) {
+      return 0;
+    }
+    return d;
+  }
+
+  int toScorex(int d) {
+    switch (d) {
+      case 0:
+        return 5;
+      case 1:
+        return 4;
+      case 2:
+        return 3;
+      case 3:
+        return 2;
+      case 4:
+        return 1;
+    }
+    return d;
   }
 }
