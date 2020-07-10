@@ -5,7 +5,7 @@ import 'package:sqflite/sqlite_api.dart';
 import 'dart:async';
 
 class DatabaseProvider {
-  static const String TABLE_Day = "Day";
+  static const String TABLE_Day = "DayTable";
   static const String COLUMN_ID = "id";
   static const String COLUMN_count59 = "count59";
   static const String COLUMN_morningMood = "morningMood";
@@ -40,7 +40,7 @@ class DatabaseProvider {
     String dbPath = await getDatabasesPath();
 
     return await openDatabase(
-      join(dbPath, 'PsyTrackDB.db'),
+      join(dbPath, 'home.db'),
       version: 1,
       onCreate: (Database database, int version) async {
         print("Creating day table");
@@ -109,6 +109,12 @@ class DatabaseProvider {
       whereArgs: [id],
     );
   }
+  Future<int> deleteAll() async {
+    final db = await database;
+    return await db.rawDelete(
+      TABLE_Day,
+    );
+  }
 
   Future<int> update(Day day) async {
     final db = await database;
@@ -120,5 +126,6 @@ class DatabaseProvider {
       whereArgs: [day.id],
     );
   }
+
   
 }

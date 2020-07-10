@@ -9,32 +9,63 @@ import 'package:PsyTrack/sharedwidgets/daycard.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-double psyStateScore=2;
-double score=0;
+import 'package:intl/intl.dart';
+double psyStateScore = 2;
+double score = 0;
+
 class HomeScreen extends StatefulWidget {
   @override
   _HomeScreen createState() => _HomeScreen();
 }
 
 class _HomeScreen extends State<HomeScreen> {
-
-   final dayprovider = DayProvider();
- // final count59 = dayprovider.count;
-  Day day;
-
-  final DatabaseProvider databaseProvider = new DatabaseProvider();
-  DayProvider dayProvider = new DayProvider();
-
   
 
   @override
   Widget build(BuildContext context) {
-    
-    void savTodb(){
-      final dpv2= Provider.of<DayProvider>(context);
-      dpv2.moM;
-      DayProvider() n = new DayProvider();
+    final dpv2 = Provider.of<DayProvider>(context, listen: false);
+      var now = new DateTime.now();
+      final DateFormat formatter = DateFormat('yyyy-MM-dd');
+     
+    void savTodb() {
+       final String date = formatter.format(now);
+      print(date);
+      Day day = new Day(
+          dpv2.count59,
+          dpv2.moM,
+          dpv2.afM,
+          dpv2.evM,
+          dpv2.nightM,
+          dpv2.stressLevel,
+          dpv2.anxietyLevel,
+          dpv2.obsessionLevel,
+          dpv2.sleepLevel,
+          dpv2.dayOVScore,
+          date);
+      print(dpv2.count59.toString() +
+          ',' +
+          dpv2.moM.toString() +
+          ',' +
+          dpv2.afM.toString() +
+          ',' +
+          dpv2.evM.toString() +
+          ',' +
+          dpv2.nightM.toString() +
+          ',' +
+          dpv2.stressLevel.toString() +
+          ',' +
+          dpv2.anxietyLevel.toString() +
+          ',' +
+          dpv2.obsessionLevel.toString() +
+          ',' +
+          dpv2.sleepLevel.toString() +
+          ',' +
+          dpv2.dayOVScore.toString() +
+          ',' +
+          date.toString());
+      dpv2.addDay(day);
     }
+
     return Scaffold(
         backgroundColor: primaryColor,
         appBar: AppBar(
@@ -54,19 +85,19 @@ class _HomeScreen extends State<HomeScreen> {
                 color: Colors.white70,
               ),
               onPressed: () {
-               
+                savTodb();
               },
             )
           ],
         ),
         body: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: <Widget>[
-            DayCard(),
-            Cardone(),
-            SecondCard(),
-            ThirdCard(),
-          ],
-        ));
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: <Widget>[
+              DayCard(),
+              Cardone(),
+              SecondCard(),
+              ThirdCard(),
+            ],
+          ));
   }
 }

@@ -4,7 +4,6 @@ import 'package:PsyTrack/screens/statsscreen.dart';
 import 'package:PsyTrack/screens/welcomescreen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:english_words/english_words.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -15,7 +14,6 @@ void main() {
     ),
   );
 }
-final wordPair = WordPair.random();
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.

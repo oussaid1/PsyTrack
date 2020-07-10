@@ -63,7 +63,7 @@ class Day {
   }
 
   Day.fromProvider(DayProvider dayProvider) {
-    count59 = dayProvider.count;
+    count59 = dayProvider.count59;
     morningMood = dayProvider.moM;
     afternoonMood = dayProvider.afM;
     eveningMood = dayProvider.evM;
