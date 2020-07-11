@@ -1,6 +1,7 @@
 import 'package:PsyTrack/classobjects/day_model.dart';
 import 'package:PsyTrack/database/sqlitemodel.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class DayProvider extends ChangeNotifier {
   Future<List<Day>> _dayList;
@@ -9,31 +10,31 @@ class DayProvider extends ChangeNotifier {
   int afM = 3;
   int evM = 5;
   int nightM = 3;
-  double stressLevel=1;
-  double anxietyLevel=1;
-  double obsessionLevel=1;
-  double sleepLevel=1;
-  double _dayOVScore=1;
-  String date ;
+  double stressLevel = 1;
+  double anxietyLevel = 1;
+  double obsessionLevel = 1;
+  double sleepLevel = 1;
+  double _dayOVScore = 1;
+  String date;
 
   double dayScore = 0;
 
   double get dayOVScore {
-    _dayOVScore = (((moM + afM + evM + nightM) ) +
-        (stressLevel + anxietyLevel + obsessionLevel + sleepLevel)  +
+    _dayOVScore = (((moM + afM + evM + nightM)) +
+        (stressLevel + anxietyLevel + obsessionLevel + sleepLevel) +
         dayScore);
-    return _dayOVScore-count59;
+    return _dayOVScore - count59;
   }
 
-  get getDayz {
-    _dayList = DatabaseProvider.db.getDays();
-    return _dayList;
-  }
+  double getMood(Day day) =>
+      (day.morningMood + day.afternoonMood + day.eveningMood + day.nightMood) /
+      4;
 
   addDay(Day day) {
     DatabaseProvider.db.insert(day);
     notifyListeners();
   }
+
   deleteAllDays() {
     DatabaseProvider.db.deleteAll();
     notifyListeners();
@@ -122,9 +123,29 @@ class DayProvider extends ChangeNotifier {
     }
     if (d >= 5) {
       return 0;
-    }else {
+    } else {
       return 1;
     }
-    
   }
+
+  void savTodb() {
+    var now = new DateTime.now();
+      final DateFormat formatter = DateFormat('yyyy-MM-dd');
+       final String date = formatter.format(now);
+      print(date);
+      Day day = new Day(
+          count59,
+          moM,
+         afM,
+         evM,
+          nightM,
+         stressLevel,
+         anxietyLevel,
+          obsessionLevel,
+         sleepLevel,
+          dayOVScore,
+          date);
+    DatabaseProvider.db.insert(day);
+    notifyListeners();
+    }
 }

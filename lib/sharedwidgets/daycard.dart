@@ -14,10 +14,16 @@ import 'package:provider/provider.dart';
 class DayCard extends StatefulWidget {
   @override
   _DayCardState createState() => _DayCardState();
+  
 }
 
 class _DayCardState extends State<DayCard> {
-  
+  @override
+  void initState() {
+    // TODO: implement initState
+     
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +45,7 @@ class _DayCardState extends State<DayCard> {
             Padding(
               padding: const EdgeInsets.fromLTRB(20, 0, 0, 0),
               child: RatingBar(
-                initialRating: 3,
+                initialRating: 0,
                 itemCount: 5,
                 itemSize: 26,
                 // ignore: missing_return

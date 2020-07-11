@@ -63,7 +63,7 @@ class DatabaseProvider {
       },
     );
   }
-
+ 
   Future<List<Day>> getDays() async {
     final db = await database;
 
