@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 class DayProvider extends ChangeNotifier {
-  Future<List<Day>> _dayList;
+  Future<List<Day>> _dayList ;
   int count59 = 0;
   int moM = 3;
   int afM = 3;
@@ -32,6 +32,18 @@ class DayProvider extends ChangeNotifier {
 
   addDay(Day day) {
     DatabaseProvider.db.insert(day);
+    notifyListeners();
+  }
+
+  get dayLists  {
+     _dayList = DatabaseProvider.db.getDays() ;
+     notifyListeners();
+     return _dayList;
+  }
+
+  deleteDay(int index) {
+    DatabaseProvider.db.delete(index);
+  
     notifyListeners();
   }
 
@@ -130,22 +142,12 @@ class DayProvider extends ChangeNotifier {
 
   void savTodb() {
     var now = new DateTime.now();
-      final DateFormat formatter = DateFormat('yyyy-MM-dd');
-       final String date = formatter.format(now);
-      print(date);
-      Day day = new Day(
-          count59,
-          moM,
-         afM,
-         evM,
-          nightM,
-         stressLevel,
-         anxietyLevel,
-          obsessionLevel,
-         sleepLevel,
-          dayOVScore,
-          date);
+    final DateFormat formatter = DateFormat('yyyy-MM-dd');
+    final String date = formatter.format(now);
+    print(date);
+    Day day = new Day(count59, moM, afM, evM, nightM, stressLevel, anxietyLevel,
+        obsessionLevel, sleepLevel, dayOVScore, date);
     DatabaseProvider.db.insert(day);
     notifyListeners();
-    }
+  }
 }

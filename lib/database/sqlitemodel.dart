@@ -40,7 +40,7 @@ class DatabaseProvider {
     String dbPath = await getDatabasesPath();
 
     return await openDatabase(
-      join(dbPath, 'home.db'),
+      join(dbPath, 'Day.db'),
       version: 1,
       onCreate: (Database database, int version) async {
         print("Creating day table");
