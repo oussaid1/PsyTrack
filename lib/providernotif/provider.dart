@@ -3,7 +3,7 @@ import 'package:PsyTrack/database/sqlitemodel.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-class DayProvider extends ChangeNotifier {
+class DayProvider    {
   Future<List<Day>> _dayList ;
   int count59 = 0;
   int moM = 3;
@@ -16,8 +16,8 @@ class DayProvider extends ChangeNotifier {
   double sleepLevel = 1;
   double _dayOVScore = 1;
   String date;
-
-  double dayScore = 0;
+DayProvider();
+ double dayScore = 0;
 
   double get dayOVScore {
     _dayOVScore = (((moM + afM + evM + nightM)) +
@@ -32,90 +32,90 @@ class DayProvider extends ChangeNotifier {
 
   addDay(Day day) {
     DatabaseProvider.db.insert(day);
-    notifyListeners();
+   
   }
 
   get dayLists  {
      _dayList = DatabaseProvider.db.getDays() ;
-     notifyListeners();
+     
      return _dayList;
   }
 
   deleteDay(int index) {
     DatabaseProvider.db.delete(index);
   
-    notifyListeners();
+   
   }
 
   deleteAllDays() {
     DatabaseProvider.db.deleteAll();
-    notifyListeners();
+   
   }
 
   void increment59() {
     count59++;
-    notifyListeners();
+   
   }
 
   void decerement59() {
     if (count59 > 0) count59--;
-    notifyListeners();
+    
   }
 
   void incrementmMood() {
     if (moM <= 4) {
       moM++;
     }
-    notifyListeners();
+    
   }
 
   void decrementmMood() {
     if (moM > 0) {
       moM--;
     }
-    notifyListeners();
+   
   }
 
   void incrementafMood() {
     if (afM <= 4) {
       afM++;
     }
-    notifyListeners();
+    
   }
 
   void decrementafMood() {
     if (afM > 0) {
       afM--;
     }
-    notifyListeners();
+   
   }
 
   void incrementevMood() {
     if (evM <= 4) {
       evM++;
     }
-    notifyListeners();
+    
   }
 
   void decrementevMood() {
     if (evM > 0) {
       evM--;
     }
-    notifyListeners();
+    
   }
 
   void incrementnightMood() {
     if (nightM <= 4) {
       nightM++;
     }
-    notifyListeners();
+   
   }
 
   void decrementnightMood() {
     if (nightM > 0) {
       nightM--;
     }
-    notifyListeners();
+    
   }
 
   double toScore(double d) {
@@ -148,6 +148,6 @@ class DayProvider extends ChangeNotifier {
     Day day = new Day(count59, moM, afM, evM, nightM, stressLevel, anxietyLevel,
         obsessionLevel, sleepLevel, dayOVScore, date);
     DatabaseProvider.db.insert(day);
-    notifyListeners();
+   
   }
 }

@@ -12,41 +12,42 @@ class WelcomeScreen extends StatelessWidget {
             Align(
               alignment: Alignment.center,
                           child: Container(
-                width: 300,
-                height: 160,
+                width: 320,
+                height: 200,
                 margin: EdgeInsets.fromLTRB(20, 0, 0, 200),
                 child: Stack(
                   alignment: Alignment.topCenter,
                   children: <Widget>[
-                    Center(
+                    Align(
+                      alignment: Alignment.centerRight,
                       child: Image.asset(
                         'assets/images/graph.png',
                         fit: BoxFit.fitWidth,
-                        width: 170,
-                        height: 140,
+                        width: 220,
+                        height: 180,
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.fromLTRB(2, 20, 60, 2),
+                      padding: const EdgeInsets.fromLTRB(2, 14, 0, 2),
                       child: Align(
                         alignment: Alignment.topRight,
                         child: Image.asset(
                           'assets/images/moodemoji.png',
                           fit: BoxFit.fitWidth,
-                          width: 50,
-                          height: 50,
+                          width: 60,
+                          height: 60,
                         ),
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.fromLTRB(8, 2, 4, 20),
+                      padding: const EdgeInsets.fromLTRB(0, 70, 4, 0),
                       child: Align(
-                        alignment: Alignment.bottomLeft,
+                        alignment: Alignment.centerLeft,
                         child: Text('PsyTrack',
                             style: TextStyle(
                               color: secondaryColor,
-                              fontSize: 34,
-                              fontWeight: FontWeight.w400,
+                              fontSize: 40,
+                              fontWeight: FontWeight.w300,
                               fontFamily: 'Roboto',
                             )),
                       ),
@@ -56,7 +57,7 @@ class WelcomeScreen extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.fromLTRB(8, 80, 0, 8),
+              padding: const EdgeInsets.fromLTRB(8, 140, 0, 8),
               child: Align(
                 alignment: Alignment.centerRight,
                 child: ClipRRect(
@@ -74,7 +75,7 @@ class WelcomeScreen extends StatelessWidget {
                     ),
                     color: secondaryColor,
                     width: 80,
-                    height: 140,
+                    height: 200,
                     alignment: Alignment.centerRight,
                   ),
                 ),

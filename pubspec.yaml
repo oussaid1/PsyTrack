@@ -31,6 +31,7 @@ dependencies:
   provider:
   sqflite:
   path:
+  flutter_bloc: ^3.2.0
   flutter_rating_bar: ^3.0.1+1
   charts_flutter:
   google_fonts: ^1.1.0

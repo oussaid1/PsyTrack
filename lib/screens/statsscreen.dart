@@ -1,17 +1,17 @@
-import 'package:PsyTrack/block/day_block.dart';
+import 'package:PsyTrack/block/day_bloc.dart';
 import 'package:PsyTrack/classobjects/day_model.dart';
 import 'package:PsyTrack/database/sqlitemodel.dart';
 import 'package:PsyTrack/day_events/add_day.dart';
-import 'package:PsyTrack/day_events/remove_day.dart';
-import 'package:PsyTrack/day_events/set_days.dart';
+import 'package:PsyTrack/day_events/delete_day.dart';
+import 'package:PsyTrack/day_events/set_day.dart';
 import 'package:PsyTrack/mainstuff/settings.dart';
+import 'package:PsyTrack/providernotif/provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:charts_flutter/flutter.dart';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:provider/provider.dart';
-import 'package:flutter/src/painting/text_style.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:intl/intl.dart';
 
 class StatsScreen extends StatefulWidget {
   StatsScreen({Key key}) : super(key: key);
@@ -22,11 +22,28 @@ class StatsScreen extends StatefulWidget {
 
 // ignore: camel_case_types
 class _statsScreen extends State<StatsScreen> {
+  DayProvider dpv2 = DayProvider();
+
   void savTodb() {
-    Day day = new Day(7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 'hola');
+    var now = new DateTime.now();
+    final DateFormat formatter = DateFormat('yyyy-MM-dd');
+    final String date = formatter.format(now);
+    print(date);
+    Day day = new Day(
+        dpv2.count59,
+        dpv2.moM,
+        dpv2.afM,
+        dpv2.evM,
+        dpv2.nightM,
+        dpv2.stressLevel,
+        dpv2.anxietyLevel,
+        dpv2.obsessionLevel,
+        dpv2.sleepLevel,
+        dpv2.dayOVScore,
+        date);
     DatabaseProvider.db.insert(day).then(
-          (storedFood) => BlocProvider.of<DayBloc>(context).add(
-            AddDay(storedFood),
+          (storedDAy) => BlocProvider.of<DayBloc>(context).add(
+            AddDay(storedDAy),
           ),
         );
   }
@@ -58,13 +75,7 @@ class _statsScreen extends State<StatsScreen> {
         backgroundColor: primaryColor,
         centerTitle: true,
         actions: <Widget>[
-          FlatButton(
-              child: Text(
-                "delete",
-              ),
-              onPressed: () {
-                savTodb();
-              }),
+          
         ],
       ),
       body: Container(
@@ -141,7 +152,7 @@ class _statsScreen extends State<StatsScreen> {
                                         style: blacktext,
                                       ),
                                       Text(
-                                        ' 12',
+                                        dayMood(day).toString(),
                                         style: blacktextBold,
                                       ),
                                     ],
@@ -249,4 +260,12 @@ class _statsScreen extends State<StatsScreen> {
       ),
     );
   }
+}
+
+double dayMood(Day day) {
+  return (day.morningMood +
+          day.afternoonMood +
+          day.eveningMood +
+          day.nightMood) /
+      4;
 }

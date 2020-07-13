@@ -17,7 +17,7 @@ class _SecondCardState extends State<SecondCard> {
 
   @override
   Widget build(BuildContext context) {
-    final dpv1 = Provider.of<DayProvider>(context);
+    DayProvider dpv1 = DayProvider();
     return Padding(
         padding: const EdgeInsets.fromLTRB(4, 4, 4, 4),
         child: Card(
@@ -54,16 +54,14 @@ class _SecondCardState extends State<SecondCard> {
                 mainAxisAlignment: MainAxisAlignment.end,
                 mainAxisSize: MainAxisSize.max,
                 children: <Widget>[
-                 Consumer<DayProvider>(
-                    builder: (context, dpv1, child) {
-                      return  new Image(
+                  new Image(
                     image: new AssetImage(moods[dpv1.moM ]['iconPath']),
                     width: 26,
                     height: 26,
                     color: null,
                     fit: BoxFit.scaleDown,
                     alignment: Alignment.center,
-                  ); } ),
+                   ),
                   IconButton(
                     icon: Icon(
                       Icons.thumb_down,
@@ -74,13 +72,11 @@ class _SecondCardState extends State<SecondCard> {
                   ),
                   Padding(
                     padding: const EdgeInsets.fromLTRB(4, 4, 2, 2),
-                    child: Consumer<DayProvider>(
-                    builder: (context, dpv, child) {
-                      return Text(
+                    child: Text(
                       dpv1.moM.toString(),
                       textAlign: TextAlign.center,
                       style: subtext,
-                    );}),
+                    ),
                   ),
                   IconButton(
                       icon: Icon(
@@ -111,16 +107,14 @@ class _SecondCardState extends State<SecondCard> {
                   mainAxisAlignment: MainAxisAlignment.end,
                   mainAxisSize: MainAxisSize.max,
                   children: <Widget>[
-                    Consumer<DayProvider>(
-                    builder: (context, dpv1, child) {
-                      return  new Image(
+                     new Image(
                     image: new AssetImage(moods[dpv1.afM ]['iconPath']),
                     width: 26,
                     height: 26,
                     color: null,
                     fit: BoxFit.scaleDown,
                     alignment: Alignment.center,
-                  ); } ),
+                  ),
                     IconButton(
                       icon: Icon(
                         Icons.thumb_down,
@@ -131,13 +125,11 @@ class _SecondCardState extends State<SecondCard> {
                     ),
                     Padding(
                       padding: const EdgeInsets.fromLTRB(4, 2, 2, 2),
-                      child: Consumer<DayProvider>(
-                    builder: (context, dpv, child) {
-                      return Text(
+                      child:  Text(
                       dpv1.afM.toString(),
                       textAlign: TextAlign.center,
                       style: subtext,
-                    );}),
+                   ),
                     ),
                     IconButton(
                         icon: Icon(
@@ -169,16 +161,14 @@ class _SecondCardState extends State<SecondCard> {
                   mainAxisAlignment: MainAxisAlignment.end,
                   mainAxisSize: MainAxisSize.max,
                   children: <Widget>[
-                    Consumer<DayProvider>(
-                    builder: (context, dpv1, child) {
-                      return  new Image(
+                      new Image(
                     image: new AssetImage(moods[dpv1.evM ]['iconPath']),
                     width: 26,
                     height: 26,
                     color: null,
                     fit: BoxFit.scaleDown,
                     alignment: Alignment.center,
-                  ); } ),
+                   ),
                     IconButton(
                       icon: Icon(
                         Icons.thumb_down,
@@ -189,13 +179,11 @@ class _SecondCardState extends State<SecondCard> {
                     ),
                     Padding(
                       padding: const EdgeInsets.fromLTRB(4, 2, 2, 2),
-                      child: Consumer<DayProvider>(
-                    builder: (context, dpv, child) {
-                      return Text(
+                      child:  Text(
                       dpv1.evM.toString(),
                       textAlign: TextAlign.center,
                       style: subtext,
-                    );}),
+                    ),
                     ),
                     IconButton(
                         icon: Icon(
@@ -227,16 +215,14 @@ class _SecondCardState extends State<SecondCard> {
                   mainAxisAlignment: MainAxisAlignment.end,
                   mainAxisSize: MainAxisSize.max,
                   children: <Widget>[
-                    Consumer<DayProvider>(
-                    builder: (context, dpv1, child) {
-                      return  new Image(
+                     new Image(
                     image: new AssetImage(moods[dpv1.nightM ]['iconPath']),
                     width: 26,
                     height: 26,
                     color: null,
                     fit: BoxFit.scaleDown,
                     alignment: Alignment.center,
-                  ); } ),
+                   ),
                     IconButton(
                       icon: Icon(
                         Icons.thumb_down,
@@ -247,13 +233,11 @@ class _SecondCardState extends State<SecondCard> {
                     ),
                     Padding(
                       padding: const EdgeInsets.fromLTRB(4, 2, 2, 2),
-                      child: Consumer<DayProvider>(
-                    builder: (context, dpv, child) {
-                      return Text(
+                      child:  Text(
                       dpv1.nightM.toString(),
                       textAlign: TextAlign.center,
                       style: subtext,
-                    );}),
+                    ),
                     ),
                     IconButton(
                         icon: Icon(

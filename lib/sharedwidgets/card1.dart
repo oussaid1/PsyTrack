@@ -5,7 +5,10 @@ import 'package:PsyTrack/providernotif/provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:PsyTrack/mainstuff/settings.dart';
-import 'package:provider/provider.dart';
+
+
+
+enum CounterEvent { increment, decrement }
 
 class Cardone extends StatefulWidget {
   @override
@@ -16,7 +19,7 @@ class _CardoneState extends State<Cardone> {
   
   @override
   Widget build(BuildContext context) {
-    var dpv = Provider.of<DayProvider>(context);
+    DayProvider dpv = DayProvider();
     return Padding(
         padding: const EdgeInsets.fromLTRB(4, 0, 4, 2),
         child: Card(
@@ -65,13 +68,11 @@ class _CardoneState extends State<Cardone> {
                     onPressed: () =>
                        dpv.decerement59(),
                   ),
-                  Consumer<DayProvider>(
-                    builder: (context, dpv, child) {
-                      return Text(dpv.count59.toString(),
+                   Text(dpv.count59.toString(),
                     textAlign: TextAlign.center,
-                    style: subtext,);
-                    },
-                  ),
+                    style: subtext,),
+                    
+                  
                   
                   IconButton(
                       icon: Icon(

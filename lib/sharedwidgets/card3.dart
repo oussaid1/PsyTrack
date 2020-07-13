@@ -19,7 +19,7 @@ class _ThirdCardState extends State<ThirdCard> {
   }
   @override
   Widget build(BuildContext context) {
-    final dpv3 = Provider.of<DayProvider>(context, listen: false);
+    DayProvider dpv3 = DayProvider();
     dpv3.stressLevel = 1;
     dpv3.anxietyLevel = 1;
     dpv3.obsessionLevel = 1;
