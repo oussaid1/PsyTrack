@@ -1,5 +1,5 @@
 import 'package:PsyTrack/block/day_bloc.dart';
-import 'package:PsyTrack/database/sqlitemodel.dart';
+import 'package:PsyTrack/screens/chartscreen.dart';
 import 'package:PsyTrack/screens/homescreen.dart';
 import 'package:PsyTrack/screens/statsscreen.dart';
 import 'package:PsyTrack/screens/welcomescreen.dart';
@@ -7,7 +7,6 @@ import 'package:PsyTrack/mainstuff/settings.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:provider/provider.dart';
 
 void main() {
   runApp( MultiBlocProvider(
@@ -44,6 +43,9 @@ class MyApp extends StatelessWidget {
           '/welcome': (context) => WelcomeScreen(),
           '/homescreen': (context) => HomeScreen(),
           '/statsscreen': (context) => StatsScreen(),
+          '/shartscreen': (context) => BarChart(),
+          
+
         },
       ),
     );

@@ -18,7 +18,7 @@ class DatabaseProvider {
   static const String COLUMN_sleepLevel = "sleepLevel";
   static const String COLUMN_overAllRate = "overAllRate";
   static const String COLUMN_date = "date";
-  DatabaseProvider();
+ 
   DatabaseProvider._();
   static final DatabaseProvider db = DatabaseProvider._();
 
@@ -40,7 +40,7 @@ class DatabaseProvider {
     String dbPath = await getDatabasesPath();
 
     return await openDatabase(
-      join(dbPath, 'Day.db'),
+      join(dbPath, 'Daydb.db'),
       version: 1,
       onCreate: (Database database, int version) async {
         print("Creating day table");

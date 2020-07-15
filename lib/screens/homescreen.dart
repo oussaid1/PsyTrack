@@ -31,18 +31,26 @@ class _HomeScreen extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     void savTodb() {
-        
-    dayOVScore = (((moM + afM + evM + nightM)) +
-        (stressLevel + anxietyLevel + obsessionLevel + sleepLevel) +
-        dayScore);
-    
-  
+      dayOVScore = (((moM + afM + evM + nightM)) +
+          (stressLevel + anxietyLevel + obsessionLevel + sleepLevel) +
+          dayScore);
+
       var now = new DateTime.now();
       final DateFormat formatter = DateFormat('yyyy-MM-dd');
       final String date = formatter.format(now);
       print(date);
-      Day day = new Day(count59, moM, afM, evM, nightM, stressLevel,
-          anxietyLevel, obsessionLevel, sleepLevel, dayOVScore, date);
+      Day day = new Day(
+          count59: count59,
+          morningMood: moM,
+          afternoonMood: afM,
+          eveningMood: evM,
+          nightMood: nightM,
+          stressLevel: stressLevel,
+          anxietyLevel: anxietyLevel,
+          obsessionLevel: obsessionLevel,
+          sleepLevel: sleepLevel,
+          dayOVScore: dayOVScore,
+          date: date);
       DatabaseProvider.db.insert(day).then(
             (storedDAy) => BlocProvider.of<DayBloc>(context).add(
               AddDay(storedDAy),
@@ -71,6 +79,13 @@ class _HomeScreen extends State<HomeScreen> {
                 color: Colors.white70,
               ),
               onPressed: () => Navigator.pushNamed(context, '/statsscreen'),
+            ),
+            IconButton(
+              icon: Icon(
+                Icons.show_chart,
+                color: Colors.white70,
+              ),
+              onPressed: () => Navigator.pushNamed(context, '/shartscreen'),
             ),
           ],
         ),
@@ -208,8 +223,10 @@ class _HomeScreen extends State<HomeScreen> {
                                 icon: Icon(Icons.arrow_drop_down),
                                 onPressed: () {
                                   setState(() {
-                                    if(count59>0){count59--;
-                                  }});
+                                    if (count59 > 0) {
+                                      count59--;
+                                    }
+                                  });
                                 }),
                             Text(
                               count59.toString(),
@@ -287,9 +304,9 @@ class _HomeScreen extends State<HomeScreen> {
                               ),
                               onPressed: () {
                                 setState(() {
-                                 if(moM>0){
-                                        moM--;
-                                      }
+                                  if (moM > 0) {
+                                    moM--;
+                                  }
                                 });
                               },
                             ),
@@ -307,9 +324,9 @@ class _HomeScreen extends State<HomeScreen> {
                                 ),
                                 onPressed: () {
                                   setState(() {
-                                   if(moM<=4){
-                                        moM++;
-                                      }
+                                    if (moM <= 4) {
+                                      moM++;
+                                    }
                                   });
                                 }),
                           ],
@@ -348,9 +365,9 @@ class _HomeScreen extends State<HomeScreen> {
                                 ),
                                 onPressed: () {
                                   setState(() {
-                                   if(afM>0){
-                                        afM--;
-                                      }
+                                    if (afM > 0) {
+                                      afM--;
+                                    }
                                   });
                                 },
                               ),
@@ -368,7 +385,7 @@ class _HomeScreen extends State<HomeScreen> {
                                   ),
                                   onPressed: () {
                                     setState(() {
-                                      if(afM<=4){
+                                      if (afM <= 4) {
                                         afM++;
                                       }
                                     });
@@ -410,9 +427,9 @@ class _HomeScreen extends State<HomeScreen> {
                                 ),
                                 onPressed: () {
                                   setState(() {
-                                    if(evM>0){
-                                        evM--;
-                                      }
+                                    if (evM > 0) {
+                                      evM--;
+                                    }
                                   });
                                 },
                               ),
@@ -430,7 +447,7 @@ class _HomeScreen extends State<HomeScreen> {
                                   ),
                                   onPressed: () {
                                     setState(() {
-                                      if(evM<=4){
+                                      if (evM <= 4) {
                                         evM++;
                                       }
                                     });
@@ -473,9 +490,9 @@ class _HomeScreen extends State<HomeScreen> {
                                 ),
                                 onPressed: () {
                                   setState(() {
-                                    if(nightM>0){
-                                        nightM--;
-                                      }
+                                    if (nightM > 0) {
+                                      nightM--;
+                                    }
                                   });
                                 },
                               ),
@@ -493,7 +510,7 @@ class _HomeScreen extends State<HomeScreen> {
                                   ),
                                   onPressed: () {
                                     setState(() {
-                                      if(nightM<=4){
+                                      if (nightM <= 4) {
                                         nightM++;
                                       }
                                     });
@@ -701,8 +718,6 @@ class _HomeScreen extends State<HomeScreen> {
     );
   }
 
- 
-
   double toScore(double d) {
     if (d < 1) {
       return 5;
@@ -724,6 +739,4 @@ class _HomeScreen extends State<HomeScreen> {
       return 1;
     }
   }
-
-  
 }

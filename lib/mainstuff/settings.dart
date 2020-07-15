@@ -2,7 +2,43 @@ import 'package:flutter/material.dart';
 import 'package:path/path.dart';
 import 'package:google_fonts/google_fonts.dart';
 
- ThemeData myTheme = ThemeData(
+const textStyle2 = const TextStyle(
+  color: Color(0xff72719b),
+  fontWeight: FontWeight.bold,
+  fontSize: 16,
+);
+const textStyle4 = const TextStyle(
+  color: Color(0xff75729e),
+  fontWeight: FontWeight.bold,
+  fontSize: 14,
+);
+const textStyle3 = const TextStyle(
+  color: Color(0xff75729e),
+  fontWeight: FontWeight.bold,
+  fontSize: 14,
+);
+const textStyle5 = const TextStyle(
+  color: Color(0xff72719b),
+  fontWeight: FontWeight.bold,
+  fontSize: 16,
+);
+
+const textstylex = TextStyle(
+  color: Color(0xff827daa),
+  fontSize: 16,
+);
+const textstyley = TextStyle(
+  color: Color(0xff827daa),
+  fontSize: 16,
+);
+
+const styleTextw = TextStyle(
+    color: Colors.white,
+    fontSize: 32,
+    fontWeight: FontWeight.bold,
+    letterSpacing: 2);
+    
+ThemeData myTheme = ThemeData(
     accentColor: secondaryTextColor,
     accentColorBrightness: Brightness.dark,
     appBarTheme: AppBarTheme(

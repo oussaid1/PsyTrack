@@ -16,6 +16,7 @@ class Day {
   String date;
 
   Day(
+      {this.id,
       this.count59,
       this.morningMood,
       this.afternoonMood,
@@ -26,7 +27,7 @@ class Day {
       this.obsessionLevel,
       this.sleepLevel,
       this.dayOVScore,
-      this.date);
+      this.date});
 
   Map<String, dynamic> toMap() {
     var map = <String, dynamic>{
@@ -43,12 +44,14 @@ class Day {
       DatabaseProvider.COLUMN_overAllRate: dayOVScore,
       DatabaseProvider.COLUMN_date: date,
     };
-
+    if (id != null) {
+      map[DatabaseProvider.COLUMN_ID] = id;
+    }
     return map;
   }
 
   Day.fromMap(Map<String, dynamic> map) {
-    // id = map[DatabaseProvider.COLUMN_ID];
+    id = map[DatabaseProvider.COLUMN_ID];
     count59 = map[DatabaseProvider.COLUMN_count59];
     morningMood = map[DatabaseProvider.COLUMN_morningMood];
     afternoonMood = map[DatabaseProvider.COLUMN_afternoonMood];

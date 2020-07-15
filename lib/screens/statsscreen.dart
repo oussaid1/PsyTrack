@@ -22,30 +22,9 @@ class StatsScreen extends StatefulWidget {
 
 // ignore: camel_case_types
 class _statsScreen extends State<StatsScreen> {
-  DayProvider dpv2 = DayProvider();
-
+  
   void savTodb() {
-    var now = new DateTime.now();
-    final DateFormat formatter = DateFormat('yyyy-MM-dd');
-    final String date = formatter.format(now);
-    print(date);
-    Day day = new Day(
-        dpv2.count59,
-        dpv2.moM,
-        dpv2.afM,
-        dpv2.evM,
-        dpv2.nightM,
-        dpv2.stressLevel,
-        dpv2.anxietyLevel,
-        dpv2.obsessionLevel,
-        dpv2.sleepLevel,
-        dpv2.dayOVScore,
-        date);
-    DatabaseProvider.db.insert(day).then(
-          (storedDAy) => BlocProvider.of<DayBloc>(context).add(
-            AddDay(storedDAy),
-          ),
-        );
+    
   }
 
   void deleteDay(BuildContext context, Day day, int index) {
@@ -69,6 +48,8 @@ class _statsScreen extends State<StatsScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final DayBloc dayBloc = BlocProvider.of<DayBloc>(context);
+    
     return Scaffold(
       backgroundColor: primaryColor,
       appBar: AppBar(
@@ -97,9 +78,9 @@ class _statsScreen extends State<StatsScreen> {
                         color: Colors.teal[300],
                         icon: Icons.delete,
                         onTap: () {
-                          setState(() {
+                         
                             deleteDay(context, day, index);
-                          });
+                         
                         },
                       ),
                       IconSlideAction(

@@ -140,14 +140,5 @@ DayProvider();
     }
   }
 
-  void savTodb() {
-    var now = new DateTime.now();
-    final DateFormat formatter = DateFormat('yyyy-MM-dd');
-    final String date = formatter.format(now);
-    print(date);
-    Day day = new Day(count59, moM, afM, evM, nightM, stressLevel, anxietyLevel,
-        obsessionLevel, sleepLevel, dayOVScore, date);
-    DatabaseProvider.db.insert(day);
-   
-  }
+  
 }
