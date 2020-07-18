@@ -64,7 +64,7 @@ class _HomeScreen extends State<HomeScreen> {
 
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.teal[900],
+          backgroundColor: primaryColor,
           actions: <Widget>[
             IconButton(
               icon: Icon(

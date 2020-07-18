@@ -17,7 +17,7 @@ import 'package:charts_flutter/flutter.dart' as charts;
     primarySwatch: Colors.white,
     fontFamily: 'Roboto');
 
-Color primaryColor = Colors.teal[900];
+Color primaryColor = Colors.teal;
 Color secondaryColor = Color(0xFFF2C94C);
 Color secondaryTextColor = Colors.teal[300];
 final TextStyle maintext = TextStyle(

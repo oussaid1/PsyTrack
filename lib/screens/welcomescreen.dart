@@ -6,6 +6,7 @@ class WelcomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: primaryColor,
         body: Stack(
           children: <Widget>[
             Align(
@@ -90,7 +91,7 @@ class WelcomeScreen extends StatelessWidget {
                       'Dev-Bourheem \n Copyright\n 2020',
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                        color: secondaryTextColor,
+                        color: secondaryColor,
                         fontWeight: FontWeight.w200,
                         fontSize: 12,
                       ),
