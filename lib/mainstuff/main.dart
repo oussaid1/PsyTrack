@@ -1,7 +1,7 @@
 import 'package:PsyTrack/block/day_bloc.dart';
-import 'package:PsyTrack/screens/chart_all.dart';
+import 'package:PsyTrack/screens/linechartscreen.dart';
 import 'package:PsyTrack/screens/homescreen.dart';
-import 'package:PsyTrack/screens/statsscreen.dart';
+import 'package:PsyTrack/screens/Itemlistscreen.dart';
 import 'package:PsyTrack/screens/welcomescreen.dart';
 import 'package:PsyTrack/mainstuff/settings.dart';
 import 'package:PsyTrack/screens/barchart.dart';
@@ -33,9 +33,9 @@ class MyApp extends StatelessWidget {
         routes: {
           '/welcome': (context) => WelcomeScreen(),
           '/homescreen': (context) => HomeScreen(),
-          '/statsscreen': (context) => StatsScreen(),
-          '/chartscreen': (context) => ChartScreen(),
-          '/chartscreen2': (context) => SimpleBarChart(),
+          '/statsscreen': (context) => ItemListScreen(),
+          '/chartscreen': (context) => AllChartScreen(),
+          '/chartscreen2': (context) => SimpleLineChart(),
           
 
         },

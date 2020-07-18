@@ -13,8 +13,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:intl/intl.dart';
 
+import 'linechartscreen.dart';
+
 // ignore: camel_case_types
-class ChartScreen extends StatefulWidget {
+class AllChartScreen extends StatefulWidget {
   static List<charts.Series<OrdinalSales, String>> _createSampleData(Day day) {
     final List<OrdinalSales> dayData = [
       new OrdinalSales(moodColors[0]['count59Color'], ':59', day.count59),
@@ -34,8 +36,8 @@ class ChartScreen extends StatefulWidget {
           day.obsessionLevel.toInt()),
       new OrdinalSales(
           moodColors[0]['sleepLevelColor'], 'sleep-Lv', day.sleepLevel.toInt()),
-      new OrdinalSales(moodColors[0]['dayOVScoreColor'], 'day-scre',
-          day.sleepLevel.toInt()),
+      new OrdinalSales(
+          moodColors[0]['dayOVScoreColor'], 'day-scre', day.sleepLevel.toInt()),
     ];
 
     return [
@@ -50,10 +52,10 @@ class ChartScreen extends StatefulWidget {
   }
 
   @override
-  _ChartScreenStateState createState() => _ChartScreenStateState();
+  _AllchartscreenState createState() => _AllchartscreenState();
 }
 
-class _ChartScreenStateState extends State<ChartScreen> {
+class _AllchartscreenState extends State<AllChartScreen> {
   Day day;
 
   void savTodb() {}
@@ -82,71 +84,92 @@ class _ChartScreenStateState extends State<ChartScreen> {
     // final DayBloc dayBloc = BlocProvider.of<DayBloc>(context);
 
     return Scaffold(
-      backgroundColor: primaryColor,
-      appBar: AppBar(
-        backgroundColor: primaryColor,
-        centerTitle: true,
-        actions: <Widget>[],
-      ),
-      body: BlocConsumer<DayBloc, List<Day>>(
-        builder: (context, dayList) {
-          return Container(
-              child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                shrinkWrap: true,
-                itemCount: dayList == null ? 0 : dayList.length,
-                itemBuilder: (BuildContext context, int index) {
-                  day = dayList[index];
-                  return Padding(
-                    padding: const EdgeInsets.all(2.0),
-                    child: Row(
-                      children: <Widget>[
-                        Align(
-          alignment: Alignment.topCenter,
-          child: Container(
-            color: primaryColor,
-            height: 240,
-            width: 300,
-            padding: EdgeInsets.all(0),
-            child: Card(
-              child: Padding(
-                padding: const EdgeInsets.all(2.0),
-                child: Column(
-                  children: <Widget>[
-                    Text(
-                      "Day : ${day.date} ",
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold),
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    Expanded(
-                                              child: charts.BarChart(
-                        ChartScreen._createSampleData(day),
-                        animate: false,
-                        domainAxis: charts.OrdinalAxisSpec(
-                            renderSpec:
-                                charts.SmallTickRendererSpec(
-                                    labelRotation: 60)),
-                      ),
-                    )
-                  ],
-                ),
+      body: Column(
+        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: <Widget>[
+          Padding(
+            padding: const EdgeInsets.only(top: 16.0),
+            child: Expanded(
+              child: Row(
+                children: <Widget>[
+                  IconButton(
+                    icon: Icon(Icons.show_chart),
+                    onPressed: () =>
+                        Navigator.pushNamed(context, '/chartscreen2'),
+                  )
+                ],
               ),
             ),
           ),
+          Container(
+            height: 260,
+            child: BlocConsumer<DayBloc, List<Day>>(
+              builder: (context, dayList) {
+                return Expanded(
+                  child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    shrinkWrap: true,
+                    itemCount: dayList == null ? 0 : dayList.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      day = dayList[index];
+                      return Padding(
+                        padding: const EdgeInsets.all(2.0),
+                        child: Row(
+                          children: <Widget>[
+                            Align(
+                              alignment: Alignment.topCenter,
+                              child: Container(
+                                color: primaryColor,
+                                height: 240,
+                                width: 300,
+                                padding: EdgeInsets.all(0),
+                                child: Card(
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(2.0),
+                                    child: Column(
+                                      children: <Widget>[
+                                        Text(
+                                          "Day : ${day.date} ",
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                        SizedBox(
+                                          height: 10,
+                                        ),
+                                        Expanded(
+                                          child: charts.BarChart(
+                                            AllChartScreen._createSampleData(day),
+                                            animate: false,
+                                            domainAxis: charts.OrdinalAxisSpec(
+                                                renderSpec:
+                                                    charts.SmallTickRendererSpec(
+                                                        labelRotation: 60)),
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
-                      ],
-                    ),
-                  );
-                },
-              ),
-            );
-        },
-        listener: (BuildContext context, dayList) {},
+                      );
+                    },
+                  ),
+                );
+              },
+              listener: (BuildContext context, dayList) {},
+            ),
+          ),
+          Expanded(
+              child: Padding(
+            padding: const EdgeInsets.fromLTRB(4, 2, 4, 2),
+            child: SimpleLineChart(),
+          )),
+        ],
       ),
-      
     );
   }
 }

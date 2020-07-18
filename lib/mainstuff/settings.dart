@@ -107,6 +107,19 @@ List<Map> moodColors = [
   'sleepLevelColor':  charts.ColorUtil.fromDartColor(Colors.brown[400]) ,
   'dayOVScoreColor':  charts.ColorUtil.fromDartColor(Colors.blueAccent[400]) ,
   'dateColor':  charts.ColorUtil.fromDartColor(Colors.redAccent[400]) ,
-  'dayMoodColor':  charts.ColorUtil.fromDartColor(Colors.grey[400]) },
+  'dayMoodColor':  charts.ColorUtil.fromDartColor(Colors.tealAccent[400]) ,
+  
+  'count59NColor': (Colors.indigo[400]) ,
+  'morningMoodNColor': (Colors.blue[400]) ,
+  'afternoonMoodNColor': (Colors.amber[400]) ,
+  'eveningMoodNColor':  (Colors.green[400]) ,
+  'nightMoodNColor':  (Colors.deepOrange[400]) ,
+  'stressLevelNColor':  (Colors.red[400]) ,
+  'anxietyLevelNColor': (Colors.pink[400]) ,
+  'obsessionLevelNColor': (Colors.lime[400]) ,
+  'sleepLevelNColor':  (Colors.brown[400]) ,
+  'dayOVScoreNColor':  (Colors.blueAccent[400]) ,
+  'dateNColor':  (Colors.redAccent[400]) ,
+  'dayMoodNColor': (Colors.tealAccent[400]) ,}
   
 ];
