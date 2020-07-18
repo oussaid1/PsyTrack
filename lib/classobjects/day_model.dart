@@ -1,6 +1,17 @@
 import 'package:PsyTrack/database/sqlitemodel.dart';
 import 'package:PsyTrack/providernotif/provider.dart';
+import 'package:charts_flutter/flutter.dart' as charts;
+import 'package:flutter/cupertino.dart';
 
+class DayData {
+ final String moodName;
+  final int moodValue;
+ final charts.Color barColor;
+  DayData(
+       this.moodName,
+       this.moodValue,
+       this.barColor);
+}
 class Day {
   int id;
   int count59;
@@ -8,6 +19,7 @@ class Day {
   int afternoonMood;
   int eveningMood;
   int nightMood;
+  double allDayMood;
   double stressLevel;
   double anxietyLevel;
   double obsessionLevel;
@@ -22,6 +34,7 @@ class Day {
       this.afternoonMood,
       this.eveningMood,
       this.nightMood,
+      this.allDayMood,
       this.stressLevel,
       this.anxietyLevel,
       this.obsessionLevel,
@@ -37,6 +50,7 @@ class Day {
       DatabaseProvider.COLUMN_afternoonMood: afternoonMood,
       DatabaseProvider.COLUMN_eveningMood: eveningMood,
       DatabaseProvider.COLUMN_nightMood: nightMood,
+      DatabaseProvider.COLUMN_allDayMood: allDayMood,
       DatabaseProvider.COLUMN_stressLevel: stressLevel,
       DatabaseProvider.COLUMN_anxietyLevel: anxietyLevel,
       DatabaseProvider.COLUMN_obsessionLevel: obsessionLevel,
@@ -57,6 +71,7 @@ class Day {
     afternoonMood = map[DatabaseProvider.COLUMN_afternoonMood];
     eveningMood = map[DatabaseProvider.COLUMN_eveningMood];
     nightMood = map[DatabaseProvider.COLUMN_nightMood];
+    allDayMood = map[DatabaseProvider.COLUMN_allDayMood];
     stressLevel = map[DatabaseProvider.COLUMN_stressLevel];
     anxietyLevel = map[DatabaseProvider.COLUMN_anxietyLevel];
     obsessionLevel = map[DatabaseProvider.COLUMN_obsessionLevel];
@@ -71,6 +86,7 @@ class Day {
     afternoonMood = dayProvider.afM;
     eveningMood = dayProvider.evM;
     nightMood = dayProvider.nightM;
+    allDayMood = dayProvider.allDayMood;
     stressLevel = dayProvider.stressLevel;
     anxietyLevel = dayProvider.anxietyLevel;
     obsessionLevel = dayProvider.obsessionLevel;

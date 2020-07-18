@@ -33,10 +33,8 @@ dependencies:
   sqflite:
   path:
   charts_flutter:
-  fl_animated_linechart: ^1.1.3
-  flutter_bloc: ^3.2.0
+  flutter_bloc: 
   flutter_rating_bar: ^3.0.1+1
-  fl_chart: ^0.10.1
   google_fonts: ^1.1.0
   flutter_slidable: "^0.5.4"
 dev_dependencies:
@@ -61,7 +59,20 @@ flutter:
     - family: Roboto
       fonts:
         - asset: fonts/RobotoMono-Regular.ttf
+        - asset: fonts/RobotoMono-ExtraLight.ttf
+        - asset: fonts/RobotoMono-ExtraLightItalic.ttf
+        - asset: fonts/RobotoMono-Italic.ttf
+        - asset: fonts/RobotoMono-Light.ttf
+        - asset: fonts/RobotoMono-LightItalic.ttf
         - asset: fonts/RobotoMono-Bold.ttf
+        - asset: fonts/RobotoMono-BoldItalic.ttf
+        - asset: fonts/RobotoMono-SemiBold.ttf
+        - asset: fonts/RobotoMono-SemiBoldItalic.ttf
+        - asset: fonts/RobotoMono-Thin.ttf
+        - asset: fonts/RobotoMono-ThinItalic.ttf
+        - asset: fonts/RobotoMono-Medium.ttf
+        - asset: fonts/RobotoMono-MediumItalic.ttf
+
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
   # For details regarding adding assets from package dependencies, see

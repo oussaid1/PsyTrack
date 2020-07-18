@@ -6,7 +6,6 @@ class WelcomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: primaryColor,
         body: Stack(
           children: <Widget>[
             Align(
@@ -67,7 +66,7 @@ class WelcomeScreen extends StatelessWidget {
                   child: Container(
                     child: IconButton(
                       icon: Icon(Icons.arrow_right),
-                      color: primaryColor,
+
                       iconSize: 40,
                       onPressed: () {
                         Navigator.pushNamed(context, '/homescreen');

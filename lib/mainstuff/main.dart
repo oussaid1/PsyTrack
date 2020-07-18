@@ -1,9 +1,10 @@
 import 'package:PsyTrack/block/day_bloc.dart';
-import 'package:PsyTrack/screens/chartscreen.dart';
+import 'package:PsyTrack/screens/chart_all.dart';
 import 'package:PsyTrack/screens/homescreen.dart';
 import 'package:PsyTrack/screens/statsscreen.dart';
 import 'package:PsyTrack/screens/welcomescreen.dart';
 import 'package:PsyTrack/mainstuff/settings.dart';
+import 'package:PsyTrack/screens/barchart.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -26,24 +27,15 @@ class MyApp extends StatelessWidget {
     return BlocProvider<DayBloc>(
       create: (context) => DayBloc(),
       child: MaterialApp(
-        theme: ThemeData(
-            accentColor: secondaryTextColor,
-            accentColorBrightness: Brightness.dark,
-            appBarTheme: AppBarTheme(
-              color: Colors.teal,
-              elevation: 0,
-              textTheme: TextTheme(
-                bodyText1: blacktext,
-              ),
-            ),
-            fontFamily: 'Roboto'),
+        
         debugShowCheckedModeBanner: false,
         initialRoute: '/welcome',
         routes: {
           '/welcome': (context) => WelcomeScreen(),
           '/homescreen': (context) => HomeScreen(),
           '/statsscreen': (context) => StatsScreen(),
-          '/shartscreen': (context) => BarChart(),
+          '/chartscreen': (context) => ChartScreen(),
+          '/chartscreen2': (context) => SimpleBarChart(),
           
 
         },

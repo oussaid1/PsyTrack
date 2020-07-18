@@ -1,44 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:path/path.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:charts_flutter/flutter.dart' as charts;
 
-const textStyle2 = const TextStyle(
-  color: Color(0xff72719b),
-  fontWeight: FontWeight.bold,
-  fontSize: 16,
-);
-const textStyle4 = const TextStyle(
-  color: Color(0xff75729e),
-  fontWeight: FontWeight.bold,
-  fontSize: 14,
-);
-const textStyle3 = const TextStyle(
-  color: Color(0xff75729e),
-  fontWeight: FontWeight.bold,
-  fontSize: 14,
-);
-const textStyle5 = const TextStyle(
-  color: Color(0xff72719b),
-  fontWeight: FontWeight.bold,
-  fontSize: 16,
-);
-
-const textstylex = TextStyle(
-  color: Color(0xff827daa),
-  fontSize: 16,
-);
-const textstyley = TextStyle(
-  color: Color(0xff827daa),
-  fontSize: 16,
-);
-
-const styleTextw = TextStyle(
-    color: Colors.white,
-    fontSize: 32,
-    fontWeight: FontWeight.bold,
-    letterSpacing: 2);
-    
-ThemeData myTheme = ThemeData(
+ ThemeData myThemed = ThemeData(
     accentColor: secondaryTextColor,
     accentColorBrightness: Brightness.dark,
     appBarTheme: AppBarTheme(
@@ -49,38 +14,38 @@ ThemeData myTheme = ThemeData(
       ),
     ),
     buttonColor: Colors.yellow[900],
-    primarySwatch: Colors.teal[900],
+    primarySwatch: Colors.white,
     fontFamily: 'Roboto');
 
 Color primaryColor = Colors.teal[900];
 Color secondaryColor = Color(0xFFF2C94C);
-Color secondaryTextColor = Colors.yellow[100];
+Color secondaryTextColor = Colors.teal[300];
 final TextStyle maintext = TextStyle(
-  color: (Color(0xFFF2C94C)),
-  fontWeight: FontWeight.w200,
+  color: Colors.teal[900],
+ 
   fontSize: 22,
   fontFamily: 'Roboto',
 );
 
 final TextStyle subtext = TextStyle(
-  color: (Colors.yellow[100]),
-  fontWeight: FontWeight.w100,
+  color: (Colors.black),
+  
   fontSize: 16,
 );
 final TextStyle maintext2 = TextStyle(
   color: Colors.teal[900],
-  fontWeight: FontWeight.w600,
+  
   fontSize: 20,
 );
 
 final TextStyle blacktext = TextStyle(
     color: (Colors.black),
-    fontWeight: FontWeight.w100,
+    
     fontFamily: 'Roboto',
     fontSize: 16);
 final TextStyle blacktextBold = TextStyle(
     color: (Colors.black),
-    fontWeight: FontWeight.w600,
+    
     fontFamily: 'Roboto',
     fontSize: 18);
 
@@ -129,4 +94,19 @@ List<Map> moods = [
     'excillentValue': 5,
     'iconPath': 'assets/images/excellent.png',
   }
+];
+List<Map> moodColors = [
+  {'count59Color':  charts.ColorUtil.fromDartColor(Colors.indigo[400]) ,
+  'morningMoodColor':  charts.ColorUtil.fromDartColor(Colors.blue[400]) ,
+  'afternoonMoodColor':  charts.ColorUtil.fromDartColor(Colors.amber[400]) ,
+  'eveningMoodColor':  charts.ColorUtil.fromDartColor(Colors.green[400]) ,
+  'nightMoodColor':  charts.ColorUtil.fromDartColor(Colors.deepOrange[400]) ,
+  'stressLevelColor':  charts.ColorUtil.fromDartColor(Colors.red[400]) ,
+  'anxietyLevelColor':  charts.ColorUtil.fromDartColor(Colors.pink[400]) ,
+  'obsessionLevelColor':  charts.ColorUtil.fromDartColor(Colors.lime[400]) ,
+  'sleepLevelColor':  charts.ColorUtil.fromDartColor(Colors.brown[400]) ,
+  'dayOVScoreColor':  charts.ColorUtil.fromDartColor(Colors.blueAccent[400]) ,
+  'dateColor':  charts.ColorUtil.fromDartColor(Colors.redAccent[400]) ,
+  'dayMoodColor':  charts.ColorUtil.fromDartColor(Colors.grey[400]) },
+  
 ];

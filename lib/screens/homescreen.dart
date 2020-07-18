@@ -14,11 +14,12 @@ int moM = 1;
 int afM = 1;
 int evM = 1;
 int nightM = 1;
-double stressLevel = 1;
-double anxietyLevel = 1;
-double obsessionLevel = 1;
-double sleepLevel = 1;
-double dayOVScore = 1;
+double allDayMood = 0;
+double stressLevel = 0;
+double anxietyLevel = 0;
+double obsessionLevel = 0;
+double sleepLevel = 0;
+double dayOVScore = 0;
 String date;
 double dayScore = 0;
 
@@ -34,17 +35,20 @@ class _HomeScreen extends State<HomeScreen> {
       dayOVScore = (((moM + afM + evM + nightM)) +
           (stressLevel + anxietyLevel + obsessionLevel + sleepLevel) +
           dayScore);
+      allDayMood = ((moM + afM + evM + nightM) / 4);
 
       var now = new DateTime.now();
+
       final DateFormat formatter = DateFormat('yyyy-MM-dd');
       final String date = formatter.format(now);
-      print(date);
+
       Day day = new Day(
           count59: count59,
           morningMood: moM,
           afternoonMood: afM,
           eveningMood: evM,
           nightMood: nightM,
+          allDayMood: allDayMood,
           stressLevel: stressLevel,
           anxietyLevel: anxietyLevel,
           obsessionLevel: obsessionLevel,
@@ -59,10 +63,8 @@ class _HomeScreen extends State<HomeScreen> {
     }
 
     return Scaffold(
-        backgroundColor: primaryColor,
         appBar: AppBar(
-          elevation: 0,
-          backgroundColor: primaryColor,
+          backgroundColor: Colors.teal[900],
           actions: <Widget>[
             IconButton(
               icon: Icon(
@@ -85,7 +87,7 @@ class _HomeScreen extends State<HomeScreen> {
                 Icons.show_chart,
                 color: Colors.white70,
               ),
-              onPressed: () => Navigator.pushNamed(context, '/shartscreen'),
+              onPressed: () => Navigator.pushNamed(context, '/chartscreen'),
             ),
           ],
         ),
@@ -101,8 +103,7 @@ class _HomeScreen extends State<HomeScreen> {
 
   buildDayCard() {
     return Card(
-      elevation: 8,
-      color: primaryColor,
+      elevation: 0,
       child: Column(
         children: <Widget>[
           Padding(
@@ -179,8 +180,7 @@ class _HomeScreen extends State<HomeScreen> {
     return Padding(
       padding: const EdgeInsets.fromLTRB(4, 0, 4, 2),
       child: Card(
-        elevation: 2,
-        color: primaryColor,
+        elevation: 0,
         child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             mainAxisSize: MainAxisSize.min,
@@ -201,15 +201,13 @@ class _HomeScreen extends State<HomeScreen> {
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
-                    Padding(
-                      padding: const EdgeInsets.all(4.0),
-                      child: Text(
-                        '00:59',
-                        style: TextStyle(
-                          fontFamily: 'Roboto',
-                          fontSize: 22,
-                          fontWeight: FontWeight.w200,
-                          color: Colors.yellow[100],
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: Padding(
+                        padding: const EdgeInsets.all(4.0),
+                        child: Text(
+                          '00:59',
+                          style: subtext,
                         ),
                       ),
                     ),
@@ -257,8 +255,7 @@ class _HomeScreen extends State<HomeScreen> {
     return Padding(
       padding: const EdgeInsets.fromLTRB(4, 4, 4, 4),
       child: Card(
-        elevation: 2,
-        color: primaryColor,
+        elevation: 0,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           mainAxisSize: MainAxisSize.min,
@@ -284,7 +281,6 @@ class _HomeScreen extends State<HomeScreen> {
                         ),
                       ),
                       Expanded(
-                        flex: 2,
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           mainAxisAlignment: MainAxisAlignment.end,
@@ -345,7 +341,6 @@ class _HomeScreen extends State<HomeScreen> {
                           ),
                         ),
                         Expanded(
-                          flex: 2,
                           child: Row(
                             crossAxisAlignment: CrossAxisAlignment.center,
                             mainAxisAlignment: MainAxisAlignment.end,
@@ -407,7 +402,6 @@ class _HomeScreen extends State<HomeScreen> {
                           ),
                         ),
                         Expanded(
-                          flex: 2,
                           child: Row(
                             crossAxisAlignment: CrossAxisAlignment.center,
                             mainAxisAlignment: MainAxisAlignment.end,
@@ -469,7 +463,6 @@ class _HomeScreen extends State<HomeScreen> {
                           ),
                         ),
                         Expanded(
-                          flex: 2,
                           child: Row(
                             crossAxisAlignment: CrossAxisAlignment.center,
                             mainAxisAlignment: MainAxisAlignment.end,
@@ -530,12 +523,10 @@ class _HomeScreen extends State<HomeScreen> {
 
   buildThirdCard() {
     return Expanded(
-      flex: 1,
       child: Padding(
         padding: const EdgeInsets.fromLTRB(2, 0, 4, 2),
         child: Card(
-          elevation: 2,
-          color: primaryColor,
+          elevation: 0,
           child: Padding(
             padding: const EdgeInsets.all(4.0),
             child: Column(

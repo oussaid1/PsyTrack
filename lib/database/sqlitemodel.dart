@@ -12,6 +12,7 @@ class DatabaseProvider {
   static const String COLUMN_afternoonMood = "afternoonMood";
   static const String COLUMN_eveningMood = "eveningMood";
   static const String COLUMN_nightMood = "nightMood";
+  static const String COLUMN_allDayMood = "allDayMood";
   static const String COLUMN_stressLevel = "stressLevel";
   static const String COLUMN_anxietyLevel = "anxietyLevel";
   static const String COLUMN_obsessionLevel = "obsessionLevel";
@@ -40,7 +41,7 @@ class DatabaseProvider {
     String dbPath = await getDatabasesPath();
 
     return await openDatabase(
-      join(dbPath, 'Daydb.db'),
+      join(dbPath, 'DayDatabase.db'),
       version: 1,
       onCreate: (Database database, int version) async {
         print("Creating day table");
@@ -53,6 +54,7 @@ class DatabaseProvider {
           "$COLUMN_afternoonMood INTEGER,"
           "$COLUMN_eveningMood INTEGER,"
           "$COLUMN_nightMood INTEGER,"
+          "$COLUMN_allDayMood DOUBLE,"
           "$COLUMN_stressLevel DOUBLE,"
           "$COLUMN_anxietyLevel DOUBLE,"
           "$COLUMN_obsessionLevel DOUBLE,"
@@ -74,6 +76,7 @@ class DatabaseProvider {
       COLUMN_afternoonMood,
       COLUMN_eveningMood,
       COLUMN_nightMood,
+      COLUMN_allDayMood,
       COLUMN_stressLevel,
       COLUMN_anxietyLevel,
       COLUMN_obsessionLevel,

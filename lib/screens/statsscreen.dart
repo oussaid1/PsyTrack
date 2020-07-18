@@ -22,10 +22,7 @@ class StatsScreen extends StatefulWidget {
 
 // ignore: camel_case_types
 class _statsScreen extends State<StatsScreen> {
-  
-  void savTodb() {
-    
-  }
+  void savTodb() {}
 
   void deleteDay(BuildContext context, Day day, int index) {
     DatabaseProvider.db.delete(day.id).then((_) {
@@ -48,15 +45,14 @@ class _statsScreen extends State<StatsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final DayBloc dayBloc = BlocProvider.of<DayBloc>(context);
-    
+    //final DayBloc dayBloc = BlocProvider.of<DayBloc>(context);
+
     return Scaffold(
-      backgroundColor: primaryColor,
       appBar: AppBar(
         backgroundColor: primaryColor,
         centerTitle: true,
         actions: <Widget>[
-          
+          IconButton(icon: Icon(Icons.show_chart), onPressed: () => Navigator.pushNamed(context, '/chartscreen2'),)
         ],
       ),
       body: Container(
@@ -75,17 +71,13 @@ class _statsScreen extends State<StatsScreen> {
                     actions: <Widget>[
                       IconSlideAction(
                         caption: 'Delete',
-                        color: Colors.teal[300],
                         icon: Icons.delete,
                         onTap: () {
-                         
-                            deleteDay(context, day, index);
-                         
+                          deleteDay(context, day, index);
                         },
                       ),
                       IconSlideAction(
                         caption: 'Edit',
-                        color: Colors.teal[500],
                         icon: Icons.edit,
                         onTap: () {},
                       ),
@@ -93,8 +85,12 @@ class _statsScreen extends State<StatsScreen> {
                     actionPane: SlidableDrawerActionPane(),
                     child: Container(
                         decoration: BoxDecoration(
+                          border: Border.all(
+                            color: primaryColor,
+                            width: 2,
+                          ),
                           borderRadius: BorderRadius.all(Radius.circular(8)),
-                          color: secondaryColor,
+                          
                         ),
                         child: Padding(
                           padding: const EdgeInsets.all(2.0),
@@ -104,6 +100,7 @@ class _statsScreen extends State<StatsScreen> {
                               children: <Widget>[
                                 Expanded(
                                   child: Row(
+                                    
                                     mainAxisSize: MainAxisSize.min,
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceEvenly,

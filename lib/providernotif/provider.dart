@@ -10,6 +10,7 @@ class DayProvider    {
   int afM = 3;
   int evM = 5;
   int nightM = 3;
+  double allDayMood;
   double stressLevel = 1;
   double anxietyLevel = 1;
   double obsessionLevel = 1;
