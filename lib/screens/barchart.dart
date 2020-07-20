@@ -90,74 +90,70 @@ class _AllchartscreenState extends State<AllChartScreen> {
         children: <Widget>[
           Padding(
             padding: const EdgeInsets.only(top: 16.0),
-            child: Expanded(
-              child: Row(
-                children: <Widget>[
-                  IconButton(
-                    icon: Icon(Icons.show_chart),
-                    onPressed: () =>
-                        Navigator.pushNamed(context, '/chartscreen2'),
-                  )
-                ],
-              ),
+            child: Row(
+              children: <Widget>[
+                IconButton(
+                  icon: Icon(Icons.show_chart),
+                  onPressed: () =>
+                      Navigator.pushNamed(context, '/chartscreen2'),
+                )
+              ],
             ),
           ),
           Container(
             height: 260,
             child: BlocConsumer<DayBloc, List<Day>>(
               builder: (context, dayList) {
-                return Expanded(
-                  child: ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    shrinkWrap: true,
-                    itemCount: dayList == null ? 0 : dayList.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      day = dayList[index];
-                      return Padding(
-                        padding: const EdgeInsets.all(2.0),
-                        child: Row(
-                          children: <Widget>[
-                            Align(
-                              alignment: Alignment.topCenter,
-                              child: Container(
-                                color: primaryColor,
-                                height: 240,
-                                width: 300,
-                                padding: EdgeInsets.all(0),
-                                child: Card(
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(2.0),
-                                    child: Column(
-                                      children: <Widget>[
-                                        Text(
-                                          "Day : ${day.date} ",
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.bold),
+                return ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  shrinkWrap: true,
+                  itemCount: dayList == null ? 0 : dayList.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    day = dayList[index];
+                    return Padding(
+                      padding: const EdgeInsets.all(2.0),
+                      child: Row(
+                        children: <Widget>[
+                          Align(
+                            alignment: Alignment.topCenter,
+                            child: Container(
+                              color: primaryColor,
+                              height: 240,
+                              width: 300,
+                              padding: EdgeInsets.all(0),
+                              child: Card(
+                                child: Padding(
+                                  padding: const EdgeInsets.all(2.0),
+                                  child: Column(
+                                    children: <Widget>[
+                                      Text(
+                                        "Day : ${day.date} ",
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                      SizedBox(
+                                        height: 10,
+                                      ),
+                                      Expanded(
+                                        child: charts.BarChart(
+                                          AllChartScreen._createSampleData(day),
+                                          animate: false,
+                                          domainAxis: charts.OrdinalAxisSpec(
+                                              renderSpec:
+                                                  charts.SmallTickRendererSpec(
+                                                      labelRotation: 60)),
                                         ),
-                                        SizedBox(
-                                          height: 10,
-                                        ),
-                                        Expanded(
-                                          child: charts.BarChart(
-                                            AllChartScreen._createSampleData(day),
-                                            animate: false,
-                                            domainAxis: charts.OrdinalAxisSpec(
-                                                renderSpec:
-                                                    charts.SmallTickRendererSpec(
-                                                        labelRotation: 60)),
-                                          ),
-                                        )
-                                      ],
-                                    ),
+                                      )
+                                    ],
                                   ),
                                 ),
                               ),
                             ),
-                          ],
-                        ),
-                      );
-                    },
-                  ),
+                          ),
+                        ],
+                      ),
+                    );
+                  },
                 );
               },
               listener: (BuildContext context, dayList) {},
@@ -166,7 +162,9 @@ class _AllchartscreenState extends State<AllChartScreen> {
           Expanded(
               child: Padding(
             padding: const EdgeInsets.fromLTRB(4, 2, 4, 2),
-            child: SimpleLineChart(),
+            child: Hero(
+              tag: 'line',
+              child: LineChartWidget()),
           )),
         ],
       ),

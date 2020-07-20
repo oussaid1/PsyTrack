@@ -26,7 +26,7 @@ class DatabaseProvider {
   Database _database;
 
   Future<Database> get database async {
-    print("database getter called");
+   
 
     if (_database != null) {
       return _database;
@@ -44,7 +44,7 @@ class DatabaseProvider {
       join(dbPath, 'DayDatabase.db'),
       version: 1,
       onCreate: (Database database, int version) async {
-        print("Creating day table");
+      
 
         await database.execute(
           "CREATE TABLE $TABLE_Day("

@@ -22,15 +22,20 @@ Color secondaryColor = Color(0xFFF2C94C);
 Color secondaryTextColor = Colors.teal[300];
 final TextStyle maintext = TextStyle(
   color: Colors.teal[900],
+ fontWeight: FontWeight.w400,
+  fontSize: 24,
  
-  fontSize: 22,
-  fontFamily: 'Roboto',
 );
 
 final TextStyle subtext = TextStyle(
   color: (Colors.black),
-  
-  fontSize: 16,
+fontWeight: FontWeight.w400,
+  fontSize: 14,
+);
+final TextStyle subtext2 = TextStyle(
+  color: (Colors.black),
+fontWeight: FontWeight.w300,
+  fontSize: 12,
 );
 final TextStyle maintext2 = TextStyle(
   color: Colors.teal[900],

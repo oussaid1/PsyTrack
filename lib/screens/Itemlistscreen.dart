@@ -87,141 +87,137 @@ class _itemListScreen extends State<ItemListScreen> {
                         decoration: BoxDecoration(
                           border: Border.all(
                             color: primaryColor,
-                            width: 2,
+                            width: 1,
                           ),
                           borderRadius: BorderRadius.all(Radius.circular(8)),
                           
                         ),
                         child: Padding(
-                          padding: const EdgeInsets.all(2.0),
-                          child: Expanded(
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              children: <Widget>[
-                                Expanded(
-                                  child: Row(
-                                    
-                                    mainAxisSize: MainAxisSize.min,
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceEvenly,
-                                    children: <Widget>[
-                                      Text(
-                                        'Day ',
-                                        style: maintext2,
-                                      ),
-                                      Text(
-                                        day.date.toString(),
-                                        style: blacktext,
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                new Divider(
-                                  color: Colors.teal[900],
-                                  thickness: 1,
-                                ),
-                                Expanded(
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: <Widget>[
-                                      Text(
-                                        'Day-Mood',
-                                        style: blacktext,
-                                      ),
-                                      Text(
-                                        dayMood(day).toString(),
-                                        style: blacktextBold,
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                Expanded(
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: <Widget>[
-                                      Text(
-                                        'Stress-Level',
-                                        style: blacktext,
-                                      ),
-                                      Text(
-                                        day.stressLevel.toString(),
-                                        style: blacktextBold,
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                Expanded(
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: <Widget>[
-                                      Text(
-                                        'Anxiety-Level',
-                                        style: blacktext,
-                                      ),
-                                      Text(
-                                        day.anxietyLevel.toString(),
-                                        style: blacktextBold,
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                Expanded(
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: <Widget>[
-                                      Text(
-                                        'Obsession-Th',
-                                        style: blacktext,
-                                      ),
-                                      Text(
-                                        day.obsessionLevel.toString(),
-                                        style: blacktextBold,
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                Expanded(
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: <Widget>[
-                                      Text(
-                                        'Sleep-Level',
-                                        style: blacktext,
-                                      ),
-                                      Text(
-                                        day.sleepLevel.toString(),
-                                        style: blacktextBold,
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                Align(
-                                  alignment: Alignment.bottomRight,
-                                  child: Expanded(
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      mainAxisSize: MainAxisSize.min,
-                                      children: <Widget>[
-                                        Text(
-                                          'Score: ',
-                                          style: blacktext,
-                                        ),
-                                        Text(
-                                          day.dayOVScore.toString(),
-                                          style: blacktextBold,
-                                        ),
-                                      ],
+                          padding: const EdgeInsets.all(4.0),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: <Widget>[
+                              Expanded(
+                                child: Row(
+                                  
+                                  mainAxisSize: MainAxisSize.min,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
+                                  children: <Widget>[
+                                    Text(
+                                      'Day ',
+                                      style: maintext2,
                                     ),
-                                  ),
+                                    Text(
+                                      day.date.toString(),
+                                      style: blacktext,
+                                    ),
+                                  ],
                                 ),
-                              ],
-                            ),
+                              ),
+                              new Divider(
+                                color: Colors.teal[900],
+                                thickness: 1,
+                              ),
+                              Expanded(
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: <Widget>[
+                                    Text(
+                                      'Day-Mood',
+                                      style: blacktext,
+                                    ),
+                                    Text(
+                                      dayMood(day).toString(),
+                                      style: blacktextBold,
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Expanded(
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: <Widget>[
+                                    Text(
+                                      'Stress-Level',
+                                      style: blacktext,
+                                    ),
+                                    Text(
+                                      day.stressLevel.toString(),
+                                      style: blacktextBold,
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Expanded(
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: <Widget>[
+                                    Text(
+                                      'Anxiety-Level',
+                                      style: blacktext,
+                                    ),
+                                    Text(
+                                      day.anxietyLevel.toString(),
+                                      style: blacktextBold,
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Expanded(
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: <Widget>[
+                                    Text(
+                                      'Obsession-Th',
+                                      style: blacktext,
+                                    ),
+                                    Text(
+                                      day.obsessionLevel.toString(),
+                                      style: blacktextBold,
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Expanded(
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: <Widget>[
+                                    Text(
+                                      'Sleep-Level',
+                                      style: blacktext,
+                                    ),
+                                    Text(
+                                      day.sleepLevel.toString(),
+                                      style: blacktextBold,
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Align(
+                                alignment: Alignment.bottomRight,
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.start,
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: <Widget>[
+                                    Text(
+                                      'Score: ',
+                                      style: blacktext,
+                                    ),
+                                    Text(
+                                      day.dayOVScore.toString(),
+                                      style: blacktextBold,
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
                           ),
                         )),
                   ),
@@ -232,10 +228,7 @@ class _itemListScreen extends State<ItemListScreen> {
           listener: (BuildContext context, dayList) {},
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
-        onPressed: () {},
-      ),
+      
     );
   }
 }

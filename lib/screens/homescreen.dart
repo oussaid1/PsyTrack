@@ -41,7 +41,7 @@ class _HomeScreen extends State<HomeScreen> {
 
       final DateFormat formatter = DateFormat('yyyy-MM-dd');
       final String date = formatter.format(now);
-
+      print(date);
       Day day = new Day(
           count59: count59,
           morningMood: moM,
@@ -63,44 +63,85 @@ class _HomeScreen extends State<HomeScreen> {
     }
 
     return Scaffold(
-        appBar: AppBar(
-          backgroundColor: primaryColor,
-          actions: <Widget>[
-            IconButton(
-              icon: Icon(
-                Icons.check,
-                color: Colors.white70,
-              ),
-              onPressed: () {
-                savTodb();
-              },
+      appBar: AppBar(
+        backgroundColor: primaryColor,
+        actions: <Widget>[
+          
+          IconButton(
+            icon: Icon(
+              Icons.add,
+              color: Colors.white70,
             ),
-            IconButton(
-              icon: Icon(
-                Icons.list,
-                color: Colors.white70,
-              ),
-              onPressed: () => Navigator.pushNamed(context, '/statsscreen'),
+            onPressed: () {
+               return showDialog(
+    context: context,
+    barrierDismissible: false, // user must tap button!
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: Text('Are you sure to save !'),
+      
+        actions: <Widget>[
+          FlatButton(
+            child: Text('Ok',style: maintext,),
+            onPressed: () {
+              savTodb();
+              Navigator.of(context).pop();
+            },
+          ),
+        ],
+      );
+    },
+  );
+            },
+          ),
+          IconButton(
+            icon: Icon(
+              Icons.list,
+              color: Colors.white70,
             ),
-            IconButton(
-              icon: Icon(
-                Icons.show_chart,
-                color: Colors.white70,
-              ),
-              onPressed: () => Navigator.pushNamed(context, '/chartscreen'),
+            onPressed: () => Navigator.pushNamed(context, '/statsscreen'),
+          ),
+          IconButton(
+            icon: Icon(
+              Icons.show_chart,
+              color: Colors.white70,
             ),
-          ],
-        ),
-        body: ListView(
-          children: <Widget>[
-            buildDayCard(),
-            buildCardone(),
-            buildSecondCard(),
-            buildThirdCard(),
-          ],
-        ));
+            onPressed: () => Navigator.pushNamed(context, '/chartscreen'),
+          ), 
+        ],
+      ),
+      body: ListView(
+        children: <Widget>[
+          buildDayCard(),
+          buildCardone(),
+          buildSecondCard(), 
+          buildThirdCard(),
+        ],
+      ),
+      
+    );
   }
-
+Future<void> _showMyDialog() async {
+  return showDialog(
+    context: context,
+    barrierDismissible: false, // user must tap button!
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: Text('Are you sure to save !'),
+      
+        actions: <Widget>[
+          FlatButton(
+            child: Text('Ok'),
+            onPressed: () {
+             
+              Navigator.of(context).pop();
+            },
+          ),
+        ],
+      );
+    },
+  );
+}
   buildDayCard() {
     return Card(
       elevation: 0,
@@ -330,189 +371,182 @@ class _HomeScreen extends State<HomeScreen> {
                       ),
                     ],
                   ),
-                  Center(
-                    child: Row(
-                      children: <Widget>[
-                        Padding(
-                          padding: const EdgeInsets.all(4.0),
-                          child: Text(
-                            'Afternoon-Mood',
-                            style: subtext,
-                          ),
+                  Row(
+                    children: <Widget>[
+                      Padding(
+                        padding: const EdgeInsets.all(4.0),
+                        child: Text(
+                          'Afternoon-Mood',
+                          style: subtext,
                         ),
-                        Expanded(
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            mainAxisSize: MainAxisSize.max,
-                            children: <Widget>[
-                              new Image(
-                                image: new AssetImage(moods[afM]['iconPath']),
-                                width: 26,
-                                height: 26,
-                                color: null,
-                                fit: BoxFit.scaleDown,
-                                alignment: Alignment.center,
+                      ),
+                      Expanded(
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          mainAxisSize: MainAxisSize.max,
+                          children: <Widget>[
+                            new Image(
+                              image: new AssetImage(moods[afM]['iconPath']),
+                              width: 26,
+                              height: 26,
+                              color: null,
+                              fit: BoxFit.scaleDown,
+                              alignment: Alignment.center,
+                            ),
+                            IconButton(
+                              icon: Icon(
+                                Icons.thumb_down,
                               ),
-                              IconButton(
+                              onPressed: () {
+                                setState(() {
+                                  if (afM > 0) {
+                                    afM--;
+                                  }
+                                });
+                              },
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.fromLTRB(4, 2, 2, 2),
+                              child: Text(
+                                afM.toString(),
+                                textAlign: TextAlign.center,
+                                style: subtext,
+                              ),
+                            ),
+                            IconButton(
                                 icon: Icon(
-                                  Icons.thumb_down,
+                                  Icons.thumb_up,
                                 ),
                                 onPressed: () {
                                   setState(() {
-                                    if (afM > 0) {
-                                      afM--;
+                                    if (afM <= 4) {
+                                      afM++;
                                     }
                                   });
-                                },
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.fromLTRB(4, 2, 2, 2),
-                                child: Text(
-                                  afM.toString(),
-                                  textAlign: TextAlign.center,
-                                  style: subtext,
-                                ),
-                              ),
-                              IconButton(
-                                  icon: Icon(
-                                    Icons.thumb_up,
-                                  ),
-                                  onPressed: () {
-                                    setState(() {
-                                      if (afM <= 4) {
-                                        afM++;
-                                      }
-                                    });
-                                  }),
-                            ],
-                          ),
+                                }),
+                          ],
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
-                  Center(
-                    child: Row(
-                      children: <Widget>[
-                        Padding(
-                          padding: const EdgeInsets.all(4.0),
-                          child: Text(
-                            'Evening-Mood',
-                            style: subtext,
-                          ),
+                  Row(
+                    children: <Widget>[
+                      Padding(
+                        padding: const EdgeInsets.all(4.0),
+                        child: Text(
+                          'Evening-Mood',
+                          style: subtext,
                         ),
-                        Expanded(
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            mainAxisSize: MainAxisSize.max,
-                            children: <Widget>[
-                              new Image(
-                                image: new AssetImage(moods[evM]['iconPath']),
-                                width: 26,
-                                height: 26,
-                                color: null,
-                                fit: BoxFit.scaleDown,
-                                alignment: Alignment.center,
+                      ),
+                      Expanded(
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          mainAxisSize: MainAxisSize.max,
+                          children: <Widget>[
+                            new Image(
+                              image: new AssetImage(moods[evM]['iconPath']),
+                              width: 26,
+                              height: 26,
+                              color: null,
+                              fit: BoxFit.scaleDown,
+                              alignment: Alignment.center,
+                            ),
+                            IconButton(
+                              icon: Icon(
+                                Icons.thumb_down,
                               ),
-                              IconButton(
+                              onPressed: () {
+                                setState(() {
+                                  if (evM > 0) {
+                                    evM--;
+                                  }
+                                });
+                              },
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.fromLTRB(4, 2, 2, 2),
+                              child: Text(
+                                evM.toString(),
+                                textAlign: TextAlign.center,
+                                style: subtext,
+                              ),
+                            ),
+                            IconButton(
                                 icon: Icon(
-                                  Icons.thumb_down,
+                                  Icons.thumb_up,
                                 ),
                                 onPressed: () {
                                   setState(() {
-                                    if (evM > 0) {
-                                      evM--;
+                                    if (evM <= 4) {
+                                      evM++;
                                     }
                                   });
-                                },
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.fromLTRB(4, 2, 2, 2),
-                                child: Text(
-                                  evM.toString(),
-                                  textAlign: TextAlign.center,
-                                  style: subtext,
-                                ),
-                              ),
-                              IconButton(
-                                  icon: Icon(
-                                    Icons.thumb_up,
-                                  ),
-                                  onPressed: () {
-                                    setState(() {
-                                      if (evM <= 4) {
-                                        evM++;
-                                      }
-                                    });
-                                  }),
-                            ],
-                          ),
+                                }),
+                          ],
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
-                  Center(
-                    child: Row(
-                      children: <Widget>[
-                        Padding(
-                          padding: const EdgeInsets.all(4.0),
-                          child: Text(
-                            'Night-Mood',
-                            style: subtext,
-                          ),
+                  Row(
+                    children: <Widget>[
+                      Padding(
+                        padding: const EdgeInsets.all(4.0),
+                        child: Text(
+                          'Night-Mood',
+                          style: subtext,
                         ),
-                        Expanded(
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            mainAxisSize: MainAxisSize.max,
-                            children: <Widget>[
-                              new Image(
-                                image:
-                                    new AssetImage(moods[nightM]['iconPath']),
-                                width: 26,
-                                height: 26,
-                                color: null,
-                                fit: BoxFit.scaleDown,
-                                alignment: Alignment.center,
+                      ),
+                      Expanded(
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          mainAxisSize: MainAxisSize.max,
+                          children: <Widget>[
+                            new Image(
+                              image: new AssetImage(moods[nightM]['iconPath']),
+                              width: 26,
+                              height: 26,
+                              color: null,
+                              fit: BoxFit.scaleDown,
+                              alignment: Alignment.center,
+                            ),
+                            IconButton(
+                              icon: Icon(
+                                Icons.thumb_down,
                               ),
-                              IconButton(
+                              onPressed: () {
+                                setState(() {
+                                  if (nightM > 0) {
+                                    nightM--;
+                                  }
+                                });
+                              },
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.fromLTRB(4, 2, 2, 2),
+                              child: Text(
+                                nightM.toString(),
+                                textAlign: TextAlign.center,
+                                style: subtext,
+                              ),
+                            ),
+                            IconButton(
                                 icon: Icon(
-                                  Icons.thumb_down,
+                                  Icons.thumb_up,
                                 ),
                                 onPressed: () {
                                   setState(() {
-                                    if (nightM > 0) {
-                                      nightM--;
+                                    if (nightM <= 4) {
+                                      nightM++;
                                     }
                                   });
-                                },
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.fromLTRB(4, 2, 2, 2),
-                                child: Text(
-                                  nightM.toString(),
-                                  textAlign: TextAlign.center,
-                                  style: subtext,
-                                ),
-                              ),
-                              IconButton(
-                                  icon: Icon(
-                                    Icons.thumb_up,
-                                  ),
-                                  onPressed: () {
-                                    setState(() {
-                                      if (nightM <= 4) {
-                                        nightM++;
-                                      }
-                                    });
-                                  }),
-                            ],
-                          ),
+                                }),
+                          ],
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
                 ])
           ],
@@ -522,187 +556,176 @@ class _HomeScreen extends State<HomeScreen> {
   }
 
   buildThirdCard() {
-    return Expanded(
-      child: Padding(
-        padding: const EdgeInsets.fromLTRB(2, 0, 4, 2),
-        child: Card(
-          elevation: 0,
-          child: Padding(
-            padding: const EdgeInsets.all(4.0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.all(2.0),
-                  child: Row(
-                    children: <Widget>[
-                      Text(
-                        'Psy-State',
-                        style: maintext,
-                      ),
-                    ],
-                  ),
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(2, 0, 4, 2),
+      child: Card(
+        elevation: 0,
+        child: Padding(
+          padding: const EdgeInsets.all(4.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.all(2.0),
+                child: Row(
+                  children: <Widget>[
+                    Text(
+                      'Psy-State',
+                      style: maintext,
+                    ),
+                  ],
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 4.0),
-                  child: Center(
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 4.0),
+                child: Row(
+                  children: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.all(4.0),
+                      child: Text(
+                        'Stress',
+                        style: subtext,
+                      ),
+                    ),
+                    Expanded(
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        mainAxisSize: MainAxisSize.min,
+                        children: <Widget>[
+                          RatingBar(
+                            initialRating: 0,
+                            minRating: 0,
+                            direction: Axis.horizontal,
+                            allowHalfRating: true,
+                            itemCount: 5,
+                            itemSize: 30,
+                            itemPadding: EdgeInsets.symmetric(horizontal: 0),
+                            itemBuilder: (context, _) => Icon(
+                              Icons.star,
+                              color: secondaryColor,
+                            ),
+                            onRatingUpdate: (rating) {
+                              stressLevel = toScore(rating);
+                              // psyStateScore=(((toScore(anxL) + toScore(stressL)+toScore(obssL )+(sleepL) ) ))  ;
+                            },
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Row(
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.all(4.0),
+                    child: Text(
+                      'Anxiety',
+                      style: subtext,
+                    ),
+                  ),
+                  Expanded(
                     child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      mainAxisSize: MainAxisSize.min,
                       children: <Widget>[
-                        Padding(
-                          padding: const EdgeInsets.all(4.0),
-                          child: Text(
-                            'Stress',
-                            style: subtext,
+                        RatingBar(
+                          initialRating: 0,
+                          minRating: 0,
+                          direction: Axis.horizontal,
+                          allowHalfRating: true,
+                          itemCount: 5,
+                          itemSize: 30,
+                          itemPadding: EdgeInsets.symmetric(horizontal: 0),
+                          itemBuilder: (context, _) => Icon(
+                            Icons.star,
+                            color: secondaryColor,
                           ),
-                        ),
-                        Expanded(
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            mainAxisSize: MainAxisSize.min,
-                            children: <Widget>[
-                              RatingBar(
-                                initialRating: 0,
-                                minRating: 0,
-                                direction: Axis.horizontal,
-                                allowHalfRating: true,
-                                itemCount: 5,
-                                itemSize: 30,
-                                itemPadding:
-                                    EdgeInsets.symmetric(horizontal: 0),
-                                itemBuilder: (context, _) => Icon(
-                                  Icons.star,
-                                  color: secondaryColor,
-                                ),
-                                onRatingUpdate: (rating) {
-                                  stressLevel = toScore(rating);
-                                  // psyStateScore=(((toScore(anxL) + toScore(stressL)+toScore(obssL )+(sleepL) ) ))  ;
-                                },
-                              ),
-                            ],
-                          ),
+                          onRatingUpdate: (rating) {
+                            anxietyLevel = toScore(rating);
+                          },
                         ),
                       ],
                     ),
                   ),
-                ),
-                Center(
-                  child: Row(
-                    children: <Widget>[
-                      Padding(
-                        padding: const EdgeInsets.all(4.0),
-                        child: Text(
-                          'Anxiety',
-                          style: subtext,
-                        ),
-                      ),
-                      Expanded(
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          mainAxisSize: MainAxisSize.min,
-                          children: <Widget>[
-                            RatingBar(
-                              initialRating: 0,
-                              minRating: 0,
-                              direction: Axis.horizontal,
-                              allowHalfRating: true,
-                              itemCount: 5,
-                              itemSize: 30,
-                              itemPadding: EdgeInsets.symmetric(horizontal: 0),
-                              itemBuilder: (context, _) => Icon(
-                                Icons.star,
-                                color: secondaryColor,
-                              ),
-                              onRatingUpdate: (rating) {
-                                anxietyLevel = toScore(rating);
-                              },
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
+                ],
+              ),
+              Row(
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.all(4.0),
+                    child: Text(
+                      'Obsession-Thts',
+                      style: subtext,
+                    ),
                   ),
-                ),
-                Center(
-                  child: Row(
-                    children: <Widget>[
-                      Padding(
-                        padding: const EdgeInsets.all(4.0),
-                        child: Text(
-                          'Obsession-Thts',
-                          style: subtext,
+                  Expanded(
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      mainAxisSize: MainAxisSize.min,
+                      children: <Widget>[
+                        RatingBar(
+                          initialRating: 0,
+                          minRating: 0,
+                          direction: Axis.horizontal,
+                          allowHalfRating: true,
+                          itemCount: 5,
+                          itemSize: 30,
+                          itemPadding: EdgeInsets.symmetric(horizontal: 0),
+                          itemBuilder: (context, _) => Icon(
+                            Icons.star,
+                            color: secondaryColor,
+                          ),
+                          onRatingUpdate: (rating) {
+                            obsessionLevel = toScore(rating);
+                          },
                         ),
-                      ),
-                      Expanded(
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          mainAxisSize: MainAxisSize.min,
-                          children: <Widget>[
-                            RatingBar(
-                              initialRating: 0,
-                              minRating: 0,
-                              direction: Axis.horizontal,
-                              allowHalfRating: true,
-                              itemCount: 5,
-                              itemSize: 30,
-                              itemPadding: EdgeInsets.symmetric(horizontal: 0),
-                              itemBuilder: (context, _) => Icon(
-                                Icons.star,
-                                color: secondaryColor,
-                              ),
-                              onRatingUpdate: (rating) {
-                                obsessionLevel = toScore(rating);
-                              },
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
-                ),
-                Center(
-                  child: Row(
-                    children: <Widget>[
-                      Padding(
-                        padding: const EdgeInsets.all(4.0),
-                        child: Text(
-                          'Sleep',
-                          style: subtext,
-                        ),
-                      ),
-                      Expanded(
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          mainAxisSize: MainAxisSize.min,
-                          children: <Widget>[
-                            RatingBar(
-                              initialRating: 0,
-                              minRating: 0,
-                              direction: Axis.horizontal,
-                              allowHalfRating: true,
-                              itemCount: 5,
-                              itemSize: 30,
-                              itemPadding: EdgeInsets.symmetric(horizontal: 0),
-                              itemBuilder: (context, _) => Icon(
-                                Icons.star,
-                                color: secondaryColor,
-                              ),
-                              onRatingUpdate: (rating) {
-                                sleepLevel = rating;
-                              },
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
+                ],
+              ),
+              Row(
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.all(4.0),
+                    child: Text(
+                      'Sleep',
+                      style: subtext,
+                    ),
                   ),
-                ),
-              ],
-            ),
+                  Expanded(
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      mainAxisSize: MainAxisSize.min,
+                      children: <Widget>[
+                        RatingBar(
+                          initialRating: 0,
+                          minRating: 0,
+                          direction: Axis.horizontal,
+                          allowHalfRating: true,
+                          itemCount: 5,
+                          itemSize: 30,
+                          itemPadding: EdgeInsets.symmetric(horizontal: 0),
+                          itemBuilder: (context, _) => Icon(
+                            Icons.star,
+                            color: secondaryColor,
+                          ),
+                          onRatingUpdate: (rating) {
+                            sleepLevel = rating;
+                          },
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ],
           ),
         ),
       ),
